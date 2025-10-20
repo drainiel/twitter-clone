@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import Button from '../components/button';
 
 export default function settings() {
   return (
@@ -15,12 +16,15 @@ export default function settings() {
       </View>
 
       <View style={styles.buttonsContainer}>
-          <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Create account</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.signUpButton]}>
-              <Text style={[styles.buttonText, styles.signUpButtonText]}>Sign in</Text>
-          </TouchableOpacity>
+          <Button 
+            title="Create account"
+            onPress={() => console.log('Create account')}
+          />
+          <Button 
+            title="Sign in"
+            variant="secondary"
+            onPress={() => console.log('Sign in')}
+          />
       </View>
     </View>
   );
@@ -30,9 +34,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#161E27',
-    justifyContent: 'flex-end', // Allinea i bottoni in basso
+    justifyContent: 'flex-end',
     paddingHorizontal: 20,
-    paddingBottom: 120, // Spazio dal bordo inferiore - metti a 40 dopo
+    paddingBottom: 120,
   },
   headerContainer: {
     flex: 1,
@@ -54,24 +58,6 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     width: '100%',
-  },
-  button: {
-    backgroundColor: '#208BFE',
-    paddingVertical: 15,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginBottom: 15,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  signUpButton: {
-    backgroundColor: '#1E2936',
-  },
-  signUpButtonText: {
-    color: '#fff',
   },
   icon: {
     color: '#208BFE',

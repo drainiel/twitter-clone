@@ -1,11 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
-    TextInput as RNTextInput,
-    StyleSheet,
-    TextInputProps,
-    TouchableOpacity,
-    View,
+  TextInput as RNTextInput,
+  StyleSheet,
+  TextInputProps,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 interface CustomTextInputProps extends TextInputProps {

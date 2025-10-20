@@ -1,5 +1,6 @@
 
 import { StyleSheet, Text, View } from 'react-native';
+import Button from '../components/button';
 import TextInput from '../components/text-input';
 
 export default function index() {
@@ -7,6 +8,9 @@ export default function index() {
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Sign In</Text>
+      </View>  
+      <View style={styles.subtitleContainer}>
+        <Text style={styles.subtitle}>Enter your account credentials</Text>
       </View>  
       {/* Username input */}
       <TextInput
@@ -23,6 +27,19 @@ export default function index() {
         autoCapitalize="none"
         keyboardType="default"
       />
+    <View style={styles.buttonsContainer}>
+        <Button 
+            title="Back"
+            size='small'
+            variant='secondary'
+            onPress={() => console.log('Back')}
+        />
+        <Button 
+            title="Next"
+            size='small'
+            onPress={() => console.log('Next')}
+        />
+    </View>
     </View>
   );
 }
@@ -30,18 +47,26 @@ export default function index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
     backgroundColor: '#161E27',
     paddingHorizontal: 20,
   },
   headerContainer: {
-    marginBottom: 40,
+    marginBottom: 20,
+    marginTop: 120,
   },
   headerText: {
     fontSize: 24,
     color: 'white',
     fontWeight: 'bold',
+  },
+  subtitleContainer: {
+    marginBottom: 20,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#93A5B7',
+    fontWeight: '600',
   },
   button: {
     flexDirection: 'row',
@@ -56,4 +81,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginLeft: 10,
   },  
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
+
 });
