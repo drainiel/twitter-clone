@@ -53,7 +53,7 @@ export default function Button({
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#208BFE',
-    paddingVertical: 15,
+    paddingVertical: 13,
     borderRadius: 8,
     alignItems: 'center',
     marginBottom: 15,
@@ -79,10 +79,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   mediumButton: {
-    paddingVertical: 12,
-    borderRadius: 7,
+    borderRadius: 10,
+    paddingVertical: 13,
+    alignSelf: 'flex-start',
+    paddingHorizontal: 80,
   },
   mediumButtonText: {
-    fontSize: 15,
+    fontSize: 14,
   },
 });

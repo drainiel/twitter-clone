@@ -1,59 +1,78 @@
 
-import { StyleSheet, Text, View } from 'react-native';
+import {
+    Keyboard,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableWithoutFeedback,
+    View,
+} from 'react-native';
 import Button from '../components/button';
 import TextInput from '../components/text-input';
 
 export default function index() {
   return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>Sign In</Text>
-      </View>  
-      <View style={styles.subtitleContainer}>
-        <Text style={styles.subtitle}>Enter your account credentials</Text>
-      </View>  
-      {/* Username input */}
-      <TextInput
-        placeholder="Username or email address"
-        icon="at"
-        autoCapitalize="none"
-        keyboardType="email-address"
-      />
-      {/* Password input */}
-      <TextInput
-        placeholder="Password"
-        icon="lock-closed"
-        secureTextEntry
-        autoCapitalize="none"
-        keyboardType="default"
-      />
-    <View style={styles.buttonsContainer}>
-        <Button 
-            title="Back"
-            size='small'
-            variant='secondary'
-            onPress={() => console.log('Back')}
-        />
-        <Button 
-            title="Next"
-            size='small'
-            onPress={() => console.log('Next')}
-        />
-    </View>
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <ScrollView style={styles.scrollView} keyboardShouldPersistTaps="handled">
+            <View style={styles.headerContainer}>
+                <Text style={styles.headerText}>Sign In</Text>
+            </View>  
+            <View style={styles.subtitleContainer}>
+                <Text style={styles.subtitle}>Enter your account credentials</Text>
+            </View>  
+            {/* Username input */}
+            <TextInput
+                placeholder="Username or email address"
+                icon="at"
+                autoCapitalize="none"
+                keyboardType="email-address"
+            />
+            {/* Password input */}
+            <TextInput
+                placeholder="Password"
+                icon="lock-closed"
+                secureTextEntry
+                autoCapitalize="none"
+                keyboardType="default"
+            />
+            <View style={styles.buttonsContainer}>
+                <Button 
+                    title="Back"
+                    size='small'
+                    variant='secondary'
+                    onPress={() => console.log('Back')}
+                />
+                <Button 
+                    title="Next"
+                    size='small'
+                    onPress={() => console.log('Next')}
+                />
+            </View>
+            <View style={styles.subtitleContainer}>
+                <Text style={styles.subtitle}>Or sign in with a token</Text>
+            </View>  
+            {/* Login with token */}
+             <Button 
+                    title="Continue with token"
+                    variant='secondary'
+                    onPress={() => console.log('Token login')}
+                />
+
+        </ScrollView>    
+     </TouchableWithoutFeedback>
+        
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollView: {
     flex: 1,
-    justifyContent: 'flex-start',
     backgroundColor: '#161E27',
     paddingHorizontal: 20,
   },
   headerContainer: {
     marginBottom: 20,
-    marginTop: 120,
+    marginTop: 60,
   },
   headerText: {
     fontSize: 24,
@@ -85,6 +104,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 10,
+    marginBottom: 5,
   },
 
 });
