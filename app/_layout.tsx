@@ -15,6 +15,10 @@ export default function TabLayout() {
         <Icon sf="person" drawable="custom_login_drawable" />
         <Label>Login</Label>
       </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="login/signin">
+        <Icon sf="person" drawable="custom_signin_drawable" />
+        <Label>Sign in</Label>
+      </NativeTabs.Trigger>
     </NativeTabs>
   );
 }
