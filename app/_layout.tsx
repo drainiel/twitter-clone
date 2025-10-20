@@ -7,17 +7,21 @@ export default function TabLayout() {
         <Label>Home</Label>
         <Icon sf="house.fill" drawable="custom_android_drawable" />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="settings">
-        <Icon sf="gear" drawable="custom_settings_drawable" />
-        <Label>Settings</Label>
-      </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="login/login">
+      <NativeTabs.Trigger name="(auth)/login">
         <Icon sf="person" drawable="custom_login_drawable" />
         <Label>Login</Label>
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="login/signin">
+      <NativeTabs.Trigger name="(auth)/signin">
         <Icon sf="person" drawable="custom_signin_drawable" />
         <Label>Sign in</Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="(auth)/create-account">
+        <Icon sf="person" drawable="custom_signin_drawable" />
+        <Label>Step 1</Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="(auth)/choose-username">
+        <Icon sf="person" drawable="custom_signin_drawable" />
+        <Label>Step 2</Label>
       </NativeTabs.Trigger>
     </NativeTabs>
   );

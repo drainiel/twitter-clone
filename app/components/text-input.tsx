@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {
   TextInput as RNTextInput,
   StyleSheet,
+  Text,
   TextInputProps,
   TouchableOpacity,
   View,
@@ -11,49 +12,65 @@ import {
 interface CustomTextInputProps extends TextInputProps {
   icon?: keyof typeof Ionicons.glyphMap;
   onIconPress?: () => void;
+  label?: string;
 }
 
 export default function TextInput({
   icon,
   onIconPress,
+  label,
   style,
   ...props
 }: CustomTextInputProps) {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <View
-      style={[
-        styles.container,
-        isFocused && styles.containerFocused,
-      ]}
-    >
-      {icon && (
-        <TouchableOpacity
-          onPress={onIconPress}
-          disabled={!onIconPress}
-          style={styles.iconContainer}
-        >
-          <Ionicons 
-            name={icon} 
-            size={20} 
-            color={isFocused ? "#208BFE" : "#788EA5"} 
-            />
-        </TouchableOpacity>
+    <View style={styles.wrapper}>
+      {label && (
+        <Text style={styles.label}>{label}</Text>
       )}
+      <View
+        style={[
+          styles.container,
+          isFocused && styles.containerFocused,
+        ]}
+      >
+        {icon && (
+          <TouchableOpacity
+            onPress={onIconPress}
+            disabled={!onIconPress}
+            style={styles.iconContainer}
+          >
+            <Ionicons 
+              name={icon} 
+              size={20} 
+              color={isFocused ? "#208BFE" : "#788EA5"} 
+            />
+          </TouchableOpacity>
+        )}
 
-      <RNTextInput
-        style={styles.input}
-        placeholderTextColor="#788EA5"
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        {...props}
-      />
+        <RNTextInput
+          style={styles.input}
+          placeholderTextColor="#788EA5"
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          {...props}
+        />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    marginBottom: 10,
+  },
+  label: {
+    color: '#93A5B7',
+    fontSize: 14,
+    marginBottom: 8,
+    fontWeight: '600',
+  },
   container: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -63,7 +80,6 @@ const styles = StyleSheet.create({
     height: 45,
     borderWidth: 1,
     borderColor: '#1E2936',
-    marginBottom: 10,
   },
   containerFocused: {
     borderColor: '#208BFE',
@@ -74,7 +90,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    color: '#FFFFFF',
+    color: '#93A5B7',
     fontSize: 16,
     padding: 0,
   },

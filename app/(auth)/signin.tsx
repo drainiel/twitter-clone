@@ -1,16 +1,16 @@
 
 import {
-    Keyboard,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableWithoutFeedback,
-    View,
+  Keyboard,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
 } from 'react-native';
 import Button from '../components/button';
 import TextInput from '../components/text-input';
 
-export default function index() {
+export default function signIn() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView style={styles.scrollView} keyboardShouldPersistTaps="handled">
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     marginBottom: 20,
-    marginTop: 60,
+    marginTop: 50,
   },
   headerText: {
     fontSize: 24,
@@ -87,23 +87,10 @@ const styles = StyleSheet.create({
     color: '#93A5B7',
     fontWeight: '600',
   },
-  button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#3b82f6',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 18,
-    marginLeft: 10,
-  },  
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 10,
+    marginTop: 20,
     marginBottom: 5,
   },
 
