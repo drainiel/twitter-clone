@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#93A5B7',
         marginBottom: 8,
-        fontWeight: '500',
+        fontWeight: '600',
     },
     dateButton: {
         backgroundColor: '#1C2733',
