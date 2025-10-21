@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "tabbar-glass",
-    "slug": "tabbar-glass",
+    "name": "twitter-clone",
+    "slug": "twitter-clone",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "tabbarglass",
+    "scheme": "twitter-clone",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
