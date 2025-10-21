@@ -1,11 +1,11 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
-export default function home() {
+export default function likes() {
   return (
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
-        <Text style={{ color: 'white' }}>This page will show home feed</Text>
-        <View style={{ marginBottom: 2000 }} />
+        <Text style={{ color: 'white' }}>Your liked posts here babe</Text>
+        <View style={{ marginBottom: 5000 }} />
       </View>
     </ScrollView>
   );
