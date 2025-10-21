@@ -6,25 +6,25 @@ export default function settings() {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-          <Ionicons name="logo-twitter" style={styles.icon} />
-          <Text style={styles.title}>
-              Twitter
-          </Text>
-          <Text style={styles.subtitle}>
-              What's up?
-          </Text>
+        <Ionicons name="logo-twitter" style={styles.icon} />
+        <Text style={styles.title}>
+          Twitter
+        </Text>
+        <Text style={styles.subtitle}>
+          What's up?
+        </Text>
       </View>
 
       <View style={styles.buttonsContainer}>
-          <Button 
-            title="Create account"
-            onPress={() => console.log('Create account')}
-          />
-          <Button 
-            title="Sign in"
-            variant="secondary"
-            onPress={() => console.log('Sign in')}
-          />
+        <Button 
+          title="Create account"
+          onPress={() => console.log('Create account')}
+        />
+        <Button 
+          title="Sign in"
+          variant="secondary"
+          onPress={() => console.log('Sign in')}
+        />
       </View>
     </View>
   );

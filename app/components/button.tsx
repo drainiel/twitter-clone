@@ -1,27 +1,23 @@
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import {
-    StyleSheet,
-    Text,
-    TextStyle,
-    TouchableOpacity,
-    TouchableOpacityProps,
-    ViewStyle,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  View
 } from 'react-native';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'warning';
   size?: 'small' | 'medium' | 'large';
-  textStyle?: TextStyle;
-  buttonStyle?: ViewStyle;
 }
 
 export default function Button({
   title,
   variant = 'primary',
   size = 'large',
-  textStyle,
-  buttonStyle,
   ...props
 }: ButtonProps) {
   return (
@@ -29,23 +25,35 @@ export default function Button({
       style={[
         styles.button,
         variant === 'secondary' && styles.secondaryButton,
+        variant === 'warning' && styles.warningButton,
+        variant === 'warning' && styles.warningButtonAlignment,
         size === 'small' && styles.smallButton,
         size === 'medium' && styles.mediumButton,
-        buttonStyle,
       ]}
+      disabled={variant === 'warning'}
       {...props}
     >
-      <Text
-        style={[
-          styles.buttonText,
-          variant === 'secondary' && styles.secondaryButtonText,
-          size === 'small' && styles.smallButtonText,
-          size === 'medium' && styles.mediumButtonText,
-          textStyle,
-        ]}
-      >
-        {title}
-      </Text>
+      <View style={styles.buttonContent}>
+        {variant === 'warning' && (
+          <Ionicons
+            name="warning"
+            size={20}
+            color="#fff"
+            style={styles.icon}
+          />
+        )}
+        <Text
+          style={[
+            styles.buttonText,
+            variant === 'secondary' && styles.secondaryButtonText,
+            variant === 'warning' && styles.warningButtonText,
+            size === 'small' && styles.smallButtonText,
+            size === 'medium' && styles.mediumButtonText,
+          ]}
+        >
+          {title}
+        </Text>
+      </View>
     </TouchableOpacity>
   );
 }
@@ -57,6 +65,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     marginBottom: 15,
+  },
+  buttonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  icon: {
+    marginRight: 8,
   },
   buttonText: {
     color: '#fff',
@@ -86,5 +101,16 @@ const styles = StyleSheet.create({
   },
   mediumButtonText: {
     fontSize: 14,
+  },
+  warningButton: {
+    backgroundColor: '#E60B3E',
+  },
+  warningButtonText: {
+    color: '#fff',
+  },
+  warningButtonAlignment: {
+    alignItems: 'flex-start',
+    paddingLeft: 16,
+    paddingVertical: 11,
   },
 });

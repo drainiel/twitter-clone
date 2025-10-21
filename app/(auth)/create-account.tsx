@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import {
-    Keyboard,
-    Linking,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableWithoutFeedback,
-    View,
+  Keyboard,
+  Linking,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
 } from 'react-native';
 import Button from '../components/button';
 import DatePicker from '../components/date-picker';
@@ -19,71 +19,75 @@ export default function createAccount() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView style={styles.scrollView} keyboardShouldPersistTaps="handled">
             <View style={styles.topHeaderContainer}>
-                <Text style={styles.TopHeaderText}>Step 1 of 3</Text>
+              <Text style={styles.TopHeaderText}>Step 1 of 3</Text>
             </View>  
             <View style={styles.headerContainer}>
-                <Text style={styles.headerText}>Your account</Text>
+              <Text style={styles.headerText}>Your account</Text>
             </View>  
-            
+            {/* optional warning button */}
+            <Button 
+              title="Please enter all required fields."
+              variant='warning'
+            />
             {/* Email input */}
             <TextInput
-                placeholder="Enter your email address"
-                label='Email'
-                icon="mail"
-                autoCapitalize="none"
-                keyboardType="email-address"
+              placeholder="Enter your email address"
+              label='Email'
+              icon="mail"
+              autoCapitalize="none"
+              keyboardType="email-address"
             />
             
             {/* Password input */}
             <TextInput
-                placeholder="Choose your password"
-                label='Password'
-                icon="lock-closed"
-                autoCapitalize="none"
-                keyboardType="default"
-                secureTextEntry
+              placeholder="Choose your password"
+              label='Password'
+              icon="lock-closed"
+              autoCapitalize="none"
+              keyboardType="default"
+              secureTextEntry
             />
             
             {/* Birth date picker */}
             <DatePicker
-                label="Your birth date"
-                value={birthDate}
-                onChange={setBirthDate}
-                placeholder="Select your birth date"
-                icon="calendar"
-                maximumDate={new Date()} // Non permette date future
+              label="Your birth date"
+              value={birthDate}
+              onChange={setBirthDate}
+              placeholder="Select your birth date"
+              icon="calendar"
+              maximumDate={new Date()} // Non permette date future
             />
 
             <Text style={styles.warningText}>
-                By creating an account you agree to the{' '}
-                <Text 
-                    style={styles.link}
-                    onPress={() => Linking.openURL('https://jetop.com')}
-                >
-                    Terms of Service
-                </Text>
-                {' '}and{' '}
-                <Text 
-                    style={styles.link}
-                    onPress={() => Linking.openURL('https://tinyurl.com/prh87s9b')}
-                >
-                    Privacy Policy
-                </Text>
-                .
-            </Text>
-            <View style={styles.buttonsContainer}>
-                <Button 
-                    title="Back"
-                    size='small'
-                    variant='secondary'
-                    onPress={() => console.log('Back')}
-                />
-                <Button 
-                    title="Next"
-                    size='small'
-                    onPress={() => console.log('Next', birthDate)}
-                />
-            </View>
+              By creating an account you agree to the{' '}
+              <Text 
+                style={styles.link}
+                onPress={() => Linking.openURL('https://jetop.com')}
+              >
+                Terms of Service
+              </Text>
+              {' '}and{' '}
+              <Text 
+                style={styles.link}
+                onPress={() => Linking.openURL('https://tinyurl.com/prh87s9b')}
+              >
+                Privacy Policy
+              </Text>
+              .
+          </Text>
+          <View style={styles.buttonsContainer}>
+            <Button 
+              title="Back"
+              size='small'
+              variant='secondary'
+              onPress={() => console.log('Back')}
+            />
+            <Button 
+              title="Next"
+              size='small'
+              onPress={() => console.log('Next', birthDate)}
+            />
+          </View>
         </ScrollView>    
      </TouchableWithoutFeedback>
   );

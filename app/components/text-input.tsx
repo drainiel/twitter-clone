@@ -41,10 +41,10 @@ export default function TextInput({
             disabled={!onIconPress}
             style={styles.iconContainer}
           >
-            <Ionicons 
-              name={icon} 
-              size={20} 
-              color={isFocused ? "#208BFE" : "#788EA5"} 
+            <Ionicons
+              name={icon}
+              size={20}
+              color={isFocused ? "#208BFE" : "#788EA5"}
             />
           </TouchableOpacity>
         )}

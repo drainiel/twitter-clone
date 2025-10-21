@@ -1,11 +1,11 @@
 
 import {
-    Keyboard,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableWithoutFeedback,
-    View,
+  Keyboard,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
 } from 'react-native';
 import Button from '../components/button';
 import TextInput from '../components/text-input';
@@ -22,23 +22,27 @@ export default function chooseUsername() {
             </View>  
             {/* Username input */}
             <TextInput
-                placeholder="Insert username"
-                icon="at"
-                autoCapitalize="none"
-                keyboardType="email-address"
+              placeholder="Insert username"
+              icon="at"
+              autoCapitalize="none"
+              keyboardType="email-address"
             />
-            
+            {/* optional warning button */}
+            <Button 
+              title={'Username is not available.'}
+              variant='warning'
+            />
             <View style={styles.buttonsContainer}>
                 <Button 
-                    title="Back"
-                    size='small'
-                    variant='secondary'
-                    onPress={() => console.log('Back')}
+                  title="Back"
+                  size='small'
+                  variant='secondary'
+                  onPress={() => console.log('Back')}
                 />
                 <Button 
-                    title="Next"
-                    size='small'
-                    onPress={() => console.log('Next')}
+                  title="Next"
+                  size='small'
+                  onPress={() => console.log('Next')}
                 />
             </View>
         </ScrollView>    

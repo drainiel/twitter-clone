@@ -103,8 +103,8 @@ export default function DatePicker({
     return (
         <View style={styles.container}>
             {label && <Text style={styles.label}>{label}</Text>}
-            
-            <TouchableOpacity 
+
+            <TouchableOpacity
                 style={styles.dateButton}
                 onPress={openPicker}
                 activeOpacity={0.7}
@@ -121,12 +121,12 @@ export default function DatePicker({
                 animationType="fade"
                 onRequestClose={closePicker}
             >
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={styles.modalOverlay}
                     activeOpacity={1}
                     onPress={closePicker}
                 >
-                    <Animated.View 
+                    <Animated.View
                         style={[
                             styles.pickerContainer,
                             { transform: [{ translateY }] }
@@ -136,7 +136,7 @@ export default function DatePicker({
                         <View style={styles.pickerHeader}>
                             <View style={styles.handleBar} />
                         </View>
-                        
+
                         <View style={styles.pickerWrapper}>
                             <DateTimePicker
                                 value={value || new Date()}
@@ -150,9 +150,9 @@ export default function DatePicker({
                                 style={styles.picker}
                             />
                         </View>
-                        
+
                         <View style={styles.buttonContainer}>
-                            <Button 
+                            <Button
                                 title="Done"
                                 onPress={closePicker}
                             />
