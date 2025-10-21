@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     color: '#93A5B7',
-    fontSize: 16,
+    fontSize: 15,
     padding: 0,
   },
 });

@@ -1,4 +1,4 @@
-
+import { useState } from 'react';
 import {
     Keyboard,
     Linking,
@@ -9,18 +9,22 @@ import {
     View,
 } from 'react-native';
 import Button from '../components/button';
+import DatePicker from '../components/date-picker';
 import TextInput from '../components/text-input';
 
 export default function createAccount() {
+  const [birthDate, setBirthDate] = useState(new Date(2005, 1, 25)); // Default: 25 Feb 2005
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView style={styles.scrollView} keyboardShouldPersistTaps="handled">
             <View style={styles.topHeaderContainer}>
-                <Text style={styles.TopHeaderText}>Step 1 of 2</Text>
+                <Text style={styles.TopHeaderText}>Step 1 of 3</Text>
             </View>  
             <View style={styles.headerContainer}>
                 <Text style={styles.headerText}>Your account</Text>
             </View>  
+            
             {/* Email input */}
             <TextInput
                 placeholder="Enter your email address"
@@ -29,6 +33,7 @@ export default function createAccount() {
                 autoCapitalize="none"
                 keyboardType="email-address"
             />
+            
             {/* Password input */}
             <TextInput
                 placeholder="Choose your password"
@@ -38,14 +43,17 @@ export default function createAccount() {
                 keyboardType="default"
                 secureTextEntry
             />
-            {/* Birth date */}
-            <TextInput
-                placeholder="Insert birth date"
-                label='Your birth date'
+            
+            {/* Birth date picker */}
+            <DatePicker
+                label="Your birth date"
+                value={birthDate}
+                onChange={setBirthDate}
+                placeholder="Select your birth date"
                 icon="calendar"
-                autoCapitalize="none"
-                keyboardType="default"
+                maximumDate={new Date()} // Non permette date future
             />
+
             <Text style={styles.warningText}>
                 By creating an account you agree to the{' '}
                 <Text 
@@ -73,12 +81,11 @@ export default function createAccount() {
                 <Button 
                     title="Next"
                     size='small'
-                    onPress={() => console.log('Next')}
+                    onPress={() => console.log('Next', birthDate)}
                 />
             </View>
         </ScrollView>    
      </TouchableWithoutFeedback>
-        
   );
 }
 
@@ -106,21 +113,22 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
   },    
   subtitle: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#93A5B7',
-    fontWeight: '600',
+    fontWeight: 'normal',
+    marginTop: 5,
   },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
-    marginBottom: 5,
+    marginBottom: 40,
   },
   warningText: {
     fontSize: 14,
     color: '#93A5B7',
     fontWeight: 'normal',
-    marginTop: 5,
+    lineHeight: 20,
   },
   link: {
     color: '#208BFE',
