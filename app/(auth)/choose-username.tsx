@@ -1,4 +1,5 @@
 
+import { router } from 'expo-router';
 import {
   Keyboard,
   ScrollView,
@@ -37,12 +38,12 @@ export default function chooseUsername() {
                   title="Back"
                   size='small'
                   variant='secondary'
-                  onPress={() => console.log('Back')}
+                  onPress={() => router.push('/(auth)/create-account')}
                 />
                 <Button 
                   title="Next"
                   size='small'
-                  onPress={() => console.log('Next')}
+                  onPress={() => router.push('/(tabs)/home')}
                 />
             </View>
         </ScrollView>    
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   topHeaderContainer: {
-    marginTop: 50,
+    marginTop: 90,
     marginBottom: 10,
   },
   TopHeaderText: {
@@ -83,6 +84,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
-    marginBottom: 5000,
+    marginBottom: 5, 
   },
 });

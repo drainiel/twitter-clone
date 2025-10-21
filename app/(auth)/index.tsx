@@ -1,8 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 import Button from '../components/button';
 
-export default function settings() {
+export default function index() {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -18,12 +19,12 @@ export default function settings() {
       <View style={styles.buttonsContainer}>
         <Button 
           title="Create account"
-          onPress={() => console.log('Create account')}
+          onPress={() => router.push('/(auth)/create-account')}
         />
         <Button 
           title="Sign in"
           variant="secondary"
-          onPress={() => console.log('Sign in')}
+          onPress={() => router.push('/(auth)/signin')}
         />
       </View>
     </View>
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#161E27',
     justifyContent: 'flex-end',
     paddingHorizontal: 20,
-    paddingBottom: 120,
+    paddingBottom: 80,
   },
   headerContainer: {
     flex: 1,

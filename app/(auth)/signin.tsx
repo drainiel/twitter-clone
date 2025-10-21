@@ -1,4 +1,5 @@
 
+import { router } from 'expo-router';
 import {
   Keyboard,
   ScrollView,
@@ -47,12 +48,12 @@ export default function signIn() {
             title="Back"
             size='small'
             variant='secondary'
-            onPress={() => console.log('Back')}
+            onPress={() => router.push('/(auth)')}
           />
           <Button
             title="Next"
             size='small'
-            onPress={() => console.log('Next')}
+            onPress={() => router.push('/(tabs)/home')}
           />
         </View>
         <View style={styles.subtitleContainer}>
@@ -62,7 +63,7 @@ export default function signIn() {
         <Button
           title="Continue with token"
           variant='secondary'
-          onPress={() => console.log('Token login')}
+          onPress={() => router.push('/(auth)/token-login')}
         />
       </ScrollView>
     </TouchableWithoutFeedback>
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     marginBottom: 20,
-    marginTop: 50,
+    marginTop: 90,
   },
   headerText: {
     fontSize: 24,
@@ -89,9 +90,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#93A5B7',
-    fontWeight: '600',
+    fontWeight: '500',
   },
   buttonsContainer: {
     flexDirection: 'row',

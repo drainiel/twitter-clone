@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function index() {
+export default function createPost() {
   return (
     <View style={styles.container}>
-      <Text>Home</Text>
+      <Text style={{ color: 'white' }}>Create Post</Text>
     </View>
   );
 }

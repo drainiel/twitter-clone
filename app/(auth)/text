@@ -1,7 +1,0 @@
-thing to add:
-1.
-    add a error button if username already exist in choose-username.tsx
-    error button must have red backgroung with white text
-2.
-    for date time picker add logic control on minimun age required (13 y/o).
-    

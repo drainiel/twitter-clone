@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import { useState } from 'react';
 import {
   Keyboard,
@@ -19,7 +20,7 @@ export default function createAccount() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView style={styles.scrollView} keyboardShouldPersistTaps="handled">
             <View style={styles.topHeaderContainer}>
-              <Text style={styles.TopHeaderText}>Step 1 of 3</Text>
+              <Text style={styles.TopHeaderText}>Step 1 of 2</Text>
             </View>  
             <View style={styles.headerContainer}>
               <Text style={styles.headerText}>Your account</Text>
@@ -80,12 +81,12 @@ export default function createAccount() {
               title="Back"
               size='small'
               variant='secondary'
-              onPress={() => console.log('Back')}
+              onPress={() => router.push('/(auth)')}
             />
             <Button 
               title="Next"
               size='small'
-              onPress={() => console.log('Next', birthDate)}
+              onPress={() => router.push('/(auth)/choose-username')}
             />
           </View>
         </ScrollView>    
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   topHeaderContainer: {
-    marginTop: 50,
+    marginTop: 90,
     marginBottom: 10,
   },
   TopHeaderText: {
