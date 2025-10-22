@@ -46,7 +46,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
 
 const styles = StyleSheet.create({
   post: {
-    backgroundColor: colors.backgroundSecondary,
+    backgroundColor: colors.background,
     borderRadius: borderRadius.md,
     padding: spacing.lg,
     marginBottom: spacing.md,
