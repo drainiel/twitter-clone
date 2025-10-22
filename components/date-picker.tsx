@@ -10,6 +10,7 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
+import { borderRadius, colors, fontSize, fontWeight, spacing } from '../constants/theme';
 import Button from './button';
 
 interface DatePickerProps {
@@ -61,7 +62,7 @@ export default function DatePicker({
         const day = date.getDate();
         const month = date.getMonth() + 1;
         const year = date.getFullYear();
-        return `${month}/${day}/${year}`;
+        return `${day}/${month}/${year}`;
     };
 
     const handleDateChange = (event: any, selectedDate?: Date) => {
@@ -109,7 +110,7 @@ export default function DatePicker({
                 onPress={openPicker}
                 activeOpacity={0.7}
             >
-                <Ionicons name={icon} size={20} color="#93A5B7" />
+                <Ionicons name={icon} size={20} color={colors.textSecondary} />
                 <Text style={styles.dateText}>
                     {value ? formatDate(value) : placeholder}
                 </Text>
@@ -145,7 +146,7 @@ export default function DatePicker({
                                 onChange={handleDateChange}
                                 maximumDate={maximumDate}
                                 minimumDate={minimumDate}
-                                textColor="#FFFFFF"
+                                textColor={colors.textPrimary}
                                 themeVariant="dark"
                                 style={styles.picker}
                             />
@@ -166,37 +167,37 @@ export default function DatePicker({
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 20,
+        marginBottom: fontSize.xxl,
     },
     label: {
-        fontSize: 14,
-        color: '#93A5B7',
-        marginBottom: 8,
-        fontWeight: '600',
+        fontSize: fontSize.sm,
+        color: colors.textSecondary,
+        marginBottom: spacing.s,
+        fontWeight: fontWeight.medium,
     },
     dateButton: {
-        backgroundColor: '#1C2733',
-        borderRadius: 8,
-        paddingHorizontal: 16,
-        paddingVertical: 14,
+        backgroundColor: colors.backgroundSecondary,
+        borderRadius: borderRadius.sm,
         flexDirection: 'row',
         alignItems: 'center',
+        paddingHorizontal: 14,
+        paddingVertical: 12,
         gap: 12,
     },
     dateText: {
-        color: '#93A5B7',
-        fontSize: 15,
+        color: colors.textSecondary,
+        fontSize: fontSize.md,
         flex: 1,
     },
     modalOverlay: {
         flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        backgroundColor: colors.overlay,
         justifyContent: 'flex-end',
     },
     pickerContainer: {
-        backgroundColor: '#161E27',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
+        backgroundColor: colors.background,
+        borderTopLeftRadius: fontSize.xxl, 
+        borderTopRightRadius: fontSize.xxl,
         paddingBottom: 40,
     },
     pickerHeader: {
@@ -207,21 +208,21 @@ const styles = StyleSheet.create({
     handleBar: {
         width: 40,
         height: 4,
-        backgroundColor: '#3A4A5A',
+        backgroundColor: colors.handleBar,
         borderRadius: 2,
     },
     pickerWrapper: {
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 10,
+        marginTop: spacing.sm,
     },
     picker: {
-        width: '100%',
+        width: '100%', 
         height: 200,
     },
     buttonContainer: {
+        marginTop: spacing.sm,
         paddingHorizontal: 20,
-        marginTop: 20,
     },
 });

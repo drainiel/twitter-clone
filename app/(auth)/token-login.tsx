@@ -1,6 +1,6 @@
+import Button from '@/components/button';
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
-import Button from '../components/button';
 
 export default function profile() {
   return (

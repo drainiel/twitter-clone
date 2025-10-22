@@ -1,4 +1,7 @@
 
+import Button from '@/components/button';
+import TextInput from '@/components/text-input';
+import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
 import { router } from 'expo-router';
 import {
   Keyboard,
@@ -8,8 +11,6 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import Button from '../components/button';
-import TextInput from '../components/text-input';
 
 export default function signIn() {
   return (
@@ -74,31 +75,31 @@ export default function signIn() {
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    backgroundColor: '#161E27',
+    backgroundColor: colors.background,
     paddingHorizontal: 20,
   },
   headerContainer: {
-    marginBottom: 20,
-    marginTop: 90,
+    marginBottom: spacing.xl,
+    marginTop: spacing.loginscreenMarginTop,
   },
   headerText: {
-    fontSize: 24,
-    color: 'white',
-    fontWeight: 'bold',
+    fontSize: fontSize.xxxl,
+    color: colors.textPrimary,
+    fontWeight: fontWeight.bold,
   },
   subtitleContainer: {
-    marginBottom: 20,
+    marginBottom: spacing.sm,
   },
   subtitle: {
-    fontSize: 15,
-    color: '#93A5B7',
-    fontWeight: '500',
+    fontSize: fontSize.md,
+    color: colors.textSecondary,
+    fontWeight: fontWeight.regular,
   },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
-    marginBottom: 5,
+    marginTop: spacing.xl,
+    marginBottom: spacing.xs,
   },
 
 });

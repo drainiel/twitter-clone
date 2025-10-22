@@ -1,7 +1,8 @@
+import Button from '@/components/button';
+import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
-import Button from '../components/button';
 
 export default function index() {
   return (
@@ -34,10 +35,10 @@ export default function index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#161E27',
+    backgroundColor: colors.background,
     justifyContent: 'flex-end',
     paddingHorizontal: 20,
-    paddingBottom: 80,
+    paddingBottom: 90,
   },
   headerContainer: {
     flex: 1,
@@ -45,24 +46,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    color: '#fff',
+    color: colors.textPrimary,
     fontSize: 32,
-    fontWeight: 'bold',
+    fontWeight: fontWeight.bold,
     textAlign: 'left',
-    marginBottom: 10,
+    marginBottom: spacing.sm,
   },
   subtitle: {
-    color: '#93A5B7',
-    fontSize: 18,
-    fontWeight: 'normal',
+    color: colors.textSecondary,
+    fontSize: fontSize.xl,
+    fontWeight: fontWeight.regular,
     textAlign: 'left',
   },
   buttonsContainer: {
     width: '100%',
   },
   icon: {
-    color: '#208BFE',
+    color: colors.primary,
     fontSize: 120,
-    marginBottom: 20,
+    marginBottom: spacing.xl,
   },
 });

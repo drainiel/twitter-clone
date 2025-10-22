@@ -1,3 +1,7 @@
+import Button from '@/components/button';
+import DatePicker from '@/components/date-picker';
+import TextInput from '@/components/text-input';
+import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import {
@@ -9,9 +13,6 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import Button from '../components/button';
-import DatePicker from '../components/date-picker';
-import TextInput from '../components/text-input';
 
 export default function createAccount() {
   const [birthDate, setBirthDate] = useState(new Date(2005, 1, 25)); // Default: 25 Feb 2005
@@ -59,7 +60,7 @@ export default function createAccount() {
               maximumDate={new Date()} // Non permette date future
             />
 
-            <Text style={styles.warningText}>
+            <Text style={styles.policyText}>
               By creating an account you agree to the{' '}
               <Text 
                 style={styles.link}
@@ -97,45 +98,38 @@ export default function createAccount() {
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    backgroundColor: '#161E27',
+    backgroundColor: colors.background,
     paddingHorizontal: 20,
   },
   headerContainer: {
-    marginBottom: 20,
+    marginBottom: spacing.xl,
   },
   headerText: {
-    fontSize: 24,
-    color: 'white',
-    fontWeight: 'bold',
+    fontSize: fontSize.xxxl,
+    color: colors.textPrimary,
+    fontWeight: fontWeight.bold,
   },
   topHeaderContainer: {
-    marginTop: 90,
-    marginBottom: 10,
+    marginTop: spacing.loginscreenMarginTop,
+    marginBottom: spacing.sm,
   },
   TopHeaderText: {
-    fontSize: 14,
-    color: '#93A5B7',
-    fontWeight: 'normal',
+    fontSize: fontSize.sm,
+    color: colors.textSecondary,
+    fontWeight: fontWeight.regular,
   },    
-  subtitle: {
-    fontSize: 14,
-    color: '#93A5B7',
-    fontWeight: 'normal',
-    marginTop: 5,
-  },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
-    marginBottom: 40,
+    marginTop: spacing.xl,
   },
-  warningText: {
-    fontSize: 14,
-    color: '#93A5B7',
-    fontWeight: 'normal',
+  policyText: {
+    fontSize: fontSize.sm,
+    color: colors.textSecondary,
+    fontWeight: fontWeight.regular,
     lineHeight: 20,
   },
   link: {
-    color: '#208BFE',
+    color: colors.primary,
   },
 });

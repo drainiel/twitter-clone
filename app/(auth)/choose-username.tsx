@@ -1,4 +1,7 @@
 
+import Button from '@/components/button';
+import TextInput from '@/components/text-input';
+import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
 import { router } from 'expo-router';
 import {
   Keyboard,
@@ -8,8 +11,6 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import Button from '../components/button';
-import TextInput from '../components/text-input';
 
 export default function chooseUsername() {
   return (
@@ -55,35 +56,35 @@ export default function chooseUsername() {
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    backgroundColor: '#161E27',
+    backgroundColor: colors.background,
     paddingHorizontal: 20,
   },
   headerContainer: {
-    marginBottom: 20,
+    marginBottom: spacing.xl,
   },
   headerText: {
-    fontSize: 24,
-    color: 'white',
-    fontWeight: 'bold',
+    fontSize: fontSize.xxxl,
+    color: colors.textPrimary,
+    fontWeight: fontWeight.bold,
   },
   topHeaderContainer: {
-    marginTop: 90,
-    marginBottom: 10,
+    marginTop: spacing.loginscreenMarginTop,
+    marginBottom: spacing.sm,
   },
   TopHeaderText: {
-    fontSize: 14,
-    color: '#93A5B7',
-    fontWeight: 'normal',
+    fontSize: fontSize.sm,
+    color: colors.textSecondary,
+    fontWeight: fontWeight.regular,
   },    
   subtitle: {
-    fontSize: 16,
-    color: '#93A5B7',
-    fontWeight: '600',
+    fontSize: fontSize.lg,
+    color: colors.textSecondary,
+    fontWeight: fontWeight.semibold,
   },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
-    marginBottom: 5, 
+    marginTop: spacing.xl,
+    marginBottom: spacing.xs, 
   },
 });

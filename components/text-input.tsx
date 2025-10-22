@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { borderRadius, colors, fontSize, fontWeight, spacing } from '../constants/theme';
 
 interface CustomTextInputProps extends TextInputProps {
   icon?: keyof typeof Ionicons.glyphMap;
@@ -44,14 +45,14 @@ export default function TextInput({
             <Ionicons
               name={icon}
               size={20}
-              color={isFocused ? "#208BFE" : "#788EA5"}
+              color={isFocused ? colors.primary : colors.textTertiary}
             />
           </TouchableOpacity>
         )}
 
         <RNTextInput
           style={styles.input}
-          placeholderTextColor="#788EA5"
+          placeholderTextColor={colors.textPlaceholder}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           {...props}
@@ -63,35 +64,35 @@ export default function TextInput({
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginBottom: 10,
+    marginBottom: spacing.sm,
   },
   label: {
-    color: '#93A5B7',
-    fontSize: 14,
-    marginBottom: 8,
-    fontWeight: '600',
+    color: colors.textSecondary,
+    fontSize: fontSize.sm,
+    marginBottom: spacing.sm,
+    fontWeight: fontWeight.medium,
   },
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1E2936',
-    borderRadius: 12,
+    backgroundColor: colors.backgroundSecondary,
+    borderRadius: borderRadius.lg,
+    borderColor: colors.border,
     paddingHorizontal: 16,
     height: 45,
     borderWidth: 1,
-    borderColor: '#1E2936',
   },
   containerFocused: {
-    borderColor: '#208BFE',
+    borderColor: colors.primary,
     borderWidth: 2,
   },
   iconContainer: {
-    marginRight: 12,
+    marginRight: spacing.md,
   },
   input: {
     flex: 1,
-    color: '#93A5B7',
-    fontSize: 15,
+    color: colors.textSecondary,
+    fontSize: fontSize.md,
     padding: 0,
   },
 });

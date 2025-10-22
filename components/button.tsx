@@ -7,6 +7,7 @@ import {
   TouchableOpacityProps,
   View
 } from 'react-native';
+import { borderRadius, colors, fontSize, fontWeight, spacing } from '../constants/theme';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
@@ -38,7 +39,7 @@ export default function Button({
           <Ionicons
             name="warning"
             size={20}
-            color="#fff"
+            color={colors.textPrimary}
             style={styles.icon}
           />
         )}
@@ -60,57 +61,57 @@ export default function Button({
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#208BFE',
+    backgroundColor: colors.primary,
     paddingVertical: 13,
-    borderRadius: 8,
+    borderRadius: borderRadius.sm,
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: spacing.md,
   },
   buttonContent: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   icon: {
-    marginRight: 8,
+    marginRight: spacing.sm,
   },
   buttonText: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: '600',
+    color: colors.textPrimary,
+    fontSize: fontSize.sm,
+    fontWeight: fontWeight.semibold,
   },
   secondaryButton: {
-    backgroundColor: '#1E2936',
+    backgroundColor: colors.backgroundSecondary,
   },
   secondaryButtonText: {
-    color: '#93A5B7',
+    color: colors.textSecondary,
   },
   smallButton: {
-    borderRadius: 10,
+    borderRadius: borderRadius.md,
     paddingVertical: 13,
     alignSelf: 'flex-start',
     paddingHorizontal: 30,
   },
   smallButtonText: {
-    fontSize: 14,
+    fontSize: fontSize.sm,
   },
   mediumButton: {
-    borderRadius: 10,
+    borderRadius: borderRadius.md,
     paddingVertical: 13,
     alignSelf: 'flex-start',
     paddingHorizontal: 80,
   },
   mediumButtonText: {
-    fontSize: 14,
+    fontSize: fontSize.sm,
   },
   warningButton: {
-    backgroundColor: '#E60B3E',
+    backgroundColor: colors.error,
   },
   warningButtonText: {
-    color: '#fff',
+    color: colors.textPrimary,
   },
   warningButtonAlignment: {
     alignItems: 'flex-start',
-    paddingLeft: 16,
+    paddingLeft: spacing.lg,
     paddingVertical: 11,
   },
 });
