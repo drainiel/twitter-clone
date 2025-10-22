@@ -11,27 +11,40 @@ import { borderRadius, colors, fontSize, fontWeight, spacing } from '../constant
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
-  variant?: 'primary' | 'secondary' | 'warning';
+  variant?: 'primary' | 'secondary' | 'warning' | 'text';
   size?: 'small' | 'medium' | 'large';
+  shape?: 'default' | 'pill';
 }
 
 export default function Button({
   title,
   variant = 'primary',
   size = 'large',
+  shape = 'default',
+  disabled,
   ...props
 }: ButtonProps) {
   return (
     <TouchableOpacity
       style={[
         styles.button,
+        // Variant styles
         variant === 'secondary' && styles.secondaryButton,
         variant === 'warning' && styles.warningButton,
         variant === 'warning' && styles.warningButtonAlignment,
+        variant === 'text' && styles.textButton,
+
+        // Size styles
         size === 'small' && styles.smallButton,
         size === 'medium' && styles.mediumButton,
+
+        // Shape styles
+        shape === 'pill' && styles.pillButton,
+        
+        // Disabled style (must be last to override)
+        disabled && styles.disabledButton,
       ]}
-      disabled={variant === 'warning'}
+      disabled={disabled}
       {...props}
     >
       <View style={styles.buttonContent}>
@@ -46,10 +59,17 @@ export default function Button({
         <Text
           style={[
             styles.buttonText,
+            // Variant text styles
             variant === 'secondary' && styles.secondaryButtonText,
             variant === 'warning' && styles.warningButtonText,
+            variant === 'text' && styles.textButtonText,
+
+            // Size text styles
             size === 'small' && styles.smallButtonText,
             size === 'medium' && styles.mediumButtonText,
+
+            // Disabled text style (must be last to override)
+            disabled && styles.disabledButtonText,
           ]}
         >
           {title}
@@ -62,7 +82,7 @@ export default function Button({
 const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.primary,
-    paddingVertical: 13,
+    paddingVertical: 13, // Default 'large' padding
     borderRadius: borderRadius.sm,
     alignItems: 'center',
     marginBottom: spacing.md,
@@ -76,32 +96,16 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.textPrimary,
-    fontSize: fontSize.sm,
+    fontSize: fontSize.md, // Default 'large' text
     fontWeight: fontWeight.semibold,
   },
+  
+  // --- Variants ---
   secondaryButton: {
     backgroundColor: colors.backgroundSecondary,
   },
   secondaryButtonText: {
     color: colors.textSecondary,
-  },
-  smallButton: {
-    borderRadius: borderRadius.md,
-    paddingVertical: 13,
-    alignSelf: 'flex-start',
-    paddingHorizontal: 30,
-  },
-  smallButtonText: {
-    fontSize: fontSize.sm,
-  },
-  mediumButton: {
-    borderRadius: borderRadius.md,
-    paddingVertical: 13,
-    alignSelf: 'flex-start',
-    paddingHorizontal: 80,
-  },
-  mediumButtonText: {
-    fontSize: fontSize.sm,
   },
   warningButton: {
     backgroundColor: colors.error,
@@ -112,6 +116,49 @@ const styles = StyleSheet.create({
   warningButtonAlignment: {
     alignItems: 'flex-start',
     paddingLeft: spacing.lg,
-    paddingVertical: 11,
+    paddingVertical: 12,
+  },
+  textButton: {
+    backgroundColor: 'transparent',
+    marginBottom: 0,
+    paddingVertical: 0,
+    paddingHorizontal: 0,
+  },
+  textButtonText: {
+    color: colors.primary,
+  },
+
+  // --- Sizes ---
+  smallButton: {
+    borderRadius: borderRadius.md,
+    alignSelf: 'flex-start',
+    paddingHorizontal: 30,
+  },
+  smallButtonText: {
+    fontSize: fontSize.sm,
+  },
+  mediumButton: {
+    borderRadius: borderRadius.md,
+    paddingVertical: 10,
+    alignSelf: 'flex-start',
+    paddingHorizontal: 80,
+  },
+  mediumButtonText: {
+    fontSize: fontSize.sm,
+  },
+
+  // --- Shape ---
+  pillButton: {
+    borderRadius: 20,
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+  },
+
+  // --- State ---
+  disabledButton: {
+    backgroundColor: colors.backgroundSecondary,
+  },
+  disabledButtonText: {
+    color: colors.textTertiary,
   },
 });

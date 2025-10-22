@@ -1,3 +1,4 @@
+import Button from '@/components/button'; // Assuming this is the correct path
 import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
@@ -8,7 +9,6 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -41,27 +41,19 @@ export default function CreatePost() {
       >
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity onPress={handleCancel}>
-            <Text style={styles.cancelButton}>Cancel</Text>
-          </TouchableOpacity>
+          <Button 
+            title="Cancel" 
+            variant="text" 
+            onPress={handleCancel} 
+          />
 
-          <TouchableOpacity
+          <Button
+            title="Post"
+            variant="primary"
+            shape="pill"
             onPress={handlePost}
             disabled={!canPost}
-            style={[
-              styles.postButton,
-              !canPost && styles.postButtonDisabled,
-            ]}
-          >
-            <Text
-              style={[
-                styles.postButtonText,
-                !canPost && styles.postButtonTextDisabled,
-              ]}
-            >
-              Post
-            </Text>
-          </TouchableOpacity>
+          />
         </View>
 
         {/* Input Area */}
@@ -113,28 +105,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: spacing.lg,
     paddingBottom: spacing.md,
-  },
-  cancelButton: {
-    color: colors.primary,
-    fontSize: fontSize.md,
-    fontWeight: fontWeight.semibold,
-  },
-  postButton: {
-    backgroundColor: colors.primary,
-    paddingHorizontal: 24,
-    paddingVertical: 8,
-    borderRadius: 20,
-  },
-  postButtonDisabled: {
-    backgroundColor: colors.backgroundSecondary,
-  },
-  postButtonText: {
-    color: colors.textPrimary,
-    fontSize: fontSize.md,
-    fontWeight: fontWeight.semibold,
-  },
-  postButtonTextDisabled: {
-    color: colors.textTertiary,
   },
   inputContainer: {
     flex: 1,

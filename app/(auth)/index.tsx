@@ -17,6 +17,18 @@ export default function index() {
         </Text>
       </View>
 
+      {/* !!! MUST be removed it's just to skip home during development !!! */}
+      <View style={styles.removeContainer}>
+        <Button 
+          title="Skip home"
+          variant='warning'
+          size='small'
+          shape='pill'
+          onPress={() => router.push('/(tabs)/home')}
+        />
+      </View>
+
+      {/* Create account button & Sign in button */}
       <View style={styles.buttonsContainer}>
         <Button 
           title="Create account"
@@ -65,5 +77,12 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 120,
     marginBottom: spacing.xl,
+  },
+  
+  //* !!! MUST be removed it's just to skip home during development !!! *
+  removeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: spacing.xxl,
   },
 });

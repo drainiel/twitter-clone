@@ -17,7 +17,7 @@ export default function signIn() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ScrollView style={styles.scrollView} keyboardShouldPersistTaps="handled">
         <View style={styles.headerContainer}>
-          <Text style={styles.headerText}>Sign In</Text>
+          <Text style={styles.headerText}>Sign in</Text>
         </View>
         <View style={styles.subtitleContainer}>
           <Text style={styles.subtitle}>Enter your account credentials</Text>
