@@ -1,27 +1,6 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Feed } from '@/components/feed/feed';
+import { mockPosts } from '@/mockData';
 
-export default function home() {
-  return (
-    <ScrollView style={styles.scrollView}>
-      <View style={styles.container}>
-        <Text style={{ color: 'white' }}>This page will show home feed</Text>
-        <View style={{ marginBottom: 2000 }} />
-      </View>
-    </ScrollView>
-  );
+export default function HomeScreen() {
+  return <Feed posts={mockPosts} />;
 }
-
-const styles = StyleSheet.create({
-  scrollView: {
-    flex: 1,
-    backgroundColor: '#161E27',
-    paddingHorizontal: 20,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#161E27',
-    marginTop: 100,
-  },
-});

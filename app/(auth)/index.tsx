@@ -27,7 +27,7 @@ export default function index() {
           onPress={() => router.push('/(tabs)/home')}
         />
       </View>
-
+       
       {/* Create account button & Sign in button */}
       <View style={styles.buttonsContainer}>
         <Button 
