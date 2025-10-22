@@ -2,13 +2,14 @@ import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -20,6 +21,7 @@ export default function CreatePost() {
   const canPost = postText.trim().length > 0 && postText.length <= maxLength;
 
   const handleCancel = () => {
+    Keyboard.dismiss();
     router.back();
   };
 
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     paddingHorizontal: spacing.lg,
     marginTop: spacing.xl,
-    marginBottom: 200,
+    marginBottom: 100, // Bcs keyboard does not appear on simulator
   },
   header: {
     flexDirection: 'row',
