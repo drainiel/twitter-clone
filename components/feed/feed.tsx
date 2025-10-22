@@ -6,7 +6,6 @@ import { Post as PostType } from '@/types';
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { Post } from '../post/post';
-
 interface FeedProps {
   posts: PostType[];
 }
@@ -16,7 +15,6 @@ export const Feed: React.FC<FeedProps> = ({ posts }) => {
     <ScrollView 
       style={styles.feed}
       contentContainerStyle={styles.feedContent}
-      showsVerticalScrollIndicator={false}
     >
       {posts.map((post) => (
         <Post key={post.id} post={post} />
@@ -31,6 +29,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   feedContent: {
-    padding: spacing.lg,
+    marginTop: spacing.lg
   },
 });
