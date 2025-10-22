@@ -9,7 +9,7 @@ export default function HomeScreen() {
       <View style={styles.headerContainer}>
                 <Text style={styles.headerText}>Logo</Text>
               </View>
-      <View style={styles.container}>
+      <View>
         return <Feed posts={mockPosts} />;
       </View> 
     </ScrollView>
