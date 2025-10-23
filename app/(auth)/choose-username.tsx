@@ -26,7 +26,7 @@ export default function chooseUsername() {
               placeholder="Insert username"
               icon="at"
               autoCapitalize="none"
-              keyboardType="email-address"
+              keyboardType="default"
             />
             {/* optional warning button */}
             <Button 

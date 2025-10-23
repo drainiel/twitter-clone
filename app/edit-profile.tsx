@@ -45,10 +45,10 @@ export default function editProfile() {
              {/* Name change input */}
             <TextInput
               placeholder="Insert name"
-              icon="person"
+              icon="id-card"
               label='You can change your name'
               autoCapitalize="none"
-              keyboardType="email-address"
+              keyboardType="default"
             />
             {/* Username change input */}
             <TextInput
@@ -56,7 +56,7 @@ export default function editProfile() {
               icon="at"
               label="Or your username"
               autoCapitalize="none"
-              keyboardType="email-address"
+              keyboardType="default"
             />
             {/* optional warning button */}
             <Button 
