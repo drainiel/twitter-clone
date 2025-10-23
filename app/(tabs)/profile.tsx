@@ -41,7 +41,6 @@ export default function ProfileScreen() {
       [
         {
           text: 'Cancel',
-          onPress: () => console.log('Logout cancelled'),
           style: 'cancel',
         },
         {

@@ -3,6 +3,7 @@ import TextInput from '@/components/text-input';
 import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
 import { router } from 'expo-router';
 import {
+  Alert,
   Keyboard,
   ScrollView,
   StyleSheet,
@@ -10,6 +11,29 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+
+const handleBack = () => {
+    // Show confirmation alert before going back 
+    Alert.alert(
+      'Log Out',
+      'Are you sure you want to discard changes?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Discard',
+          onPress: () => {
+            // Navigate back to profile
+            router.replace('/(tabs)/profile');
+          },
+          style: 'destructive',
+        },
+      ],
+      { cancelable: true }
+    );
+  };
 
 export default function editProfile() {
   return (
@@ -44,7 +68,7 @@ export default function editProfile() {
                   title="Back"
                   size='small'
                   variant='secondary'
-                  onPress={() => router.push('/(tabs)/profile')}
+                  onPress={handleBack}
                 />
                 <Button 
                   title="Next"
