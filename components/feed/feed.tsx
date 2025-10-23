@@ -1,7 +1,7 @@
 // ============================================
 // Feed.tsx - Feed container
 // ============================================
-import { colors, spacing } from '@/constants/theme';
+import { colors } from '@/constants/theme';
 import { Post as PostType } from '@/types';
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   feedContent: {
-    marginTop: spacing.xxl,
+
   },
 });

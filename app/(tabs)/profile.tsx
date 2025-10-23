@@ -1,30 +1,166 @@
 import Button from '@/components/button';
+import { Feed } from '@/components/feed/feed';
+import { colors, fontSize, fontWeight, iconSize, spacing } from '@/constants/theme';
+import { mockPosts } from '@/mockData';
+import { Post as PostType } from '@/types';
+import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
-  
-export default function profile() {
+import React from 'react';
+import {
+  Alert,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+// --- Placeholder User Data ---
+// Replace this with actual user data fetching logic later
+const mockUser = {
+  name: 'Daniele',
+  username: 'drainiel.jetop.social',
+  // Assuming mockPosts are the posts *by this user* for now
+  // In a real app, you'd filter or fetch posts specifically for the logged-in user
+  posts: mockPosts as PostType[],
+};
+// --- End Placeholder Data ---
+
+export default function ProfileScreen() {
+  const handleEditProfile = () => {
+    // TODO: Implement navigation or modal for editing profile
+   router.push('/edit-profile');
+  };
+
+  const handleLogoutPress = () => {
+    // Show confirmation alert before logging out
+    Alert.alert(
+      'Log Out',
+      'Are you sure you want to log out?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Logout cancelled'),
+          style: 'cancel',
+        },
+        {
+          text: 'Log Out',
+          onPress: () => {
+            // Navigate back to the authentication stack's entry point
+            router.replace('/(auth)');
+          },
+          style: 'destructive',
+        },
+      ],
+      { cancelable: true }
+    );
+  };
+
   return (
-    <View style={styles.container}>
-    <View style={styles.buttonsContainer}>
-        <Button 
-          title="Log out"
-          variant='secondary'
-          onPress={() => router.push('/(auth)')}
-        />
-    </View>
-  </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollView}>
+        {/* --- Profile Header --- */}
+        <View style={styles.headerContainer}>
+          {/* Action Buttons */}
+          <View style={styles.actionsContainer}>
+            <Button
+              title="Edit Profile"
+              variant="secondary"
+              size="small"
+              shape="pill"
+              onPress={handleEditProfile}
+              style={styles.editButton}
+            />
+            {/* Use TouchableOpacity + Icon again */}
+            <TouchableOpacity onPress={handleLogoutPress} style={styles.logoutButton}>
+              <Ionicons
+                name="log-out"
+                size={iconSize.lg}
+                color={colors.textSecondary}
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/* User Info */}
+          <View style={styles.userInfoContainer}>
+            <Text style={styles.nameText}>{mockUser.name}</Text>
+            <Text style={styles.usernameText}>@{mockUser.username}</Text>
+          </View>
+        </View>
+
+        {/* --- Posts Section --- */}
+        <Text style={styles.postsHeader}>Posts</Text>
+
+        {mockUser.posts.length > 0 ? (
+          <Feed posts={mockUser.posts} />
+        ) : (
+          <View style={styles.noPostsContainer}>
+            <Text style={styles.noPostsText}>No posts yet.</Text>
+          </View>
+        )}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colors.background,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  headerContainer: {
+    paddingHorizontal: spacing.xxl,
+    paddingTop: spacing.lg,
+    paddingBottom: spacing.xl,
+    borderBottomWidth: 0.5,
+    borderBottomColor: colors.separator,
+  },
+  actionsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginBottom: spacing.xl,
+  },
+  editButton: {
+    marginRight: spacing.md,
+    marginBottom: 0,
+  },
+  logoutButton: {
+    padding: spacing.s,
+    marginLeft: spacing.s,
+  },
+  userInfoContainer: {},
+  nameText: {
+    fontSize: fontSize.xxxl,
+    fontWeight: fontWeight.bold,
+    color: colors.textPrimary,
+    marginBottom: spacing.s,
+  },
+  usernameText: {
+    fontSize: fontSize.md,
+    color: colors.textSecondary,
+    marginBottom: spacing.s,
+  },
+  postsHeader: {
+    fontSize: fontSize.xxl,
+    fontWeight: fontWeight.semibold,
+    color: colors.textPrimary,
+    paddingHorizontal: spacing.xxl,
+    marginTop: spacing.xl,
+    marginBottom: spacing.xl,
+  },
+  noPostsContainer: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#161E27',
-    paddingHorizontal: 60,
+    paddingVertical: spacing.xxl * 2,
   },
-  buttonsContainer: {
-    width: '100%',
-  }
+  noPostsText: {
+    fontSize: fontSize.md,
+    color: colors.textSecondary,
+  },
 });

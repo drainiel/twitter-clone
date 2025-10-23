@@ -34,5 +34,6 @@ const styles = StyleSheet.create({
     fontSize: fontSize.xxxl,
     color: colors.textPrimary,
     fontWeight: fontWeight.semibold,
+    marginBottom: spacing.xxl,
   },
 });
