@@ -1,4 +1,6 @@
-// theme.ts - Centralized theme configuration
+// ============================================
+// theme.ts - centralized theme configuration
+// ============================================
 export const colors = {
   // Primary colors
   primary: '#208BFE',

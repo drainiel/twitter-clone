@@ -3,8 +3,15 @@
 // ============================================
 import { colors, fontSize, fontWeight, iconSize, spacing } from '@/constants/theme';
 import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
+
+const AnimatedIcon = Animated.createAnimatedComponent(Ionicons);
 
 interface PostActionsProps {
   likes: number;
@@ -13,6 +20,31 @@ interface PostActionsProps {
 }
 
 export const PostActions: React.FC<PostActionsProps> = ({ likes, isLiked, onLike }) => {
+  // Create a shared value for the scale
+  const scale = useSharedValue(1);
+
+  // Define the animation logic to run when 'isLiked' prop changes
+  useEffect(() => {
+    if (isLiked) {
+      // Use withTiming for a fast, direct "pop"
+      // Animate up quickly
+      scale.value = withTiming(1.25, { duration: 150 }, () => {
+        // Settle back down quickly
+        scale.value = withTiming(1, { duration: 100 });
+      });
+    } else {
+      // Snap back to 1 instantly when unliked
+      scale.value = withTiming(1, { duration: 50 });
+    }
+  }, [isLiked, scale]); // Re-run when isLiked changes
+
+  // Create the animated style object
+  const animatedIconStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: scale.value }],
+    };
+  });
+
   const formatLikes = (count: number): string => {
     if (count >= 1000000) {
       return `${(count / 1000000).toFixed(1)}M`;
@@ -30,9 +62,13 @@ export const PostActions: React.FC<PostActionsProps> = ({ likes, isLiked, onLike
         onPress={onLike}
         activeOpacity={0.7}
       >
-        <Ionicons 
-        name={isLiked ? "heart" : "heart-outline"} 
-        style={[styles.likeIcon, isLiked ? styles.iconActive : styles.iconInactive]}
+        <AnimatedIcon
+          name={isLiked ? "heart" : "heart-outline"}
+          style={[
+            styles.likeIcon,
+            isLiked ? styles.iconActive : styles.iconInactive,
+            animatedIconStyle, 
+          ]}
         />
         <Text style={[styles.likeCount, isLiked && styles.likeCountActive]}>
           {formatLikes(likes)}

@@ -1,3 +1,7 @@
+// ============================================
+// text-input.tsx - text field input with
+//  different styles, label...
+// ============================================
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {

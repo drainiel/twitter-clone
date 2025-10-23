@@ -1,4 +1,3 @@
-
 import Button from '@/components/button';
 import TextInput from '@/components/text-input';
 import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
