@@ -12,12 +12,20 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { borderRadius, colors, fontSize, fontWeight, iconSize, spacing } from '../constants/theme';
+import {
+  borderRadius,
+  colors,
+  fontSize,
+  fontWeight,
+  iconSize,
+  spacing,
+} from '../constants/theme';
 
 interface CustomTextInputProps extends TextInputProps {
   icon?: keyof typeof Ionicons.glyphMap;
   onIconPress?: () => void;
   label?: string;
+  multiline?: boolean;
 }
 
 export default function TextInput({
@@ -25,19 +33,20 @@ export default function TextInput({
   onIconPress,
   label,
   style,
+  multiline, 
   ...props
 }: CustomTextInputProps) {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
     <View style={styles.wrapper}>
-      {label && (
-        <Text style={styles.label}>{label}</Text>
-      )}
+      {label && <Text style={styles.label}>{label}</Text>}
       <View
         style={[
           styles.container,
           isFocused && styles.containerFocused,
+          // Apply multiline style if prop is true
+          multiline && styles.containerMultiline,
         ]}
       >
         {icon && (
@@ -55,10 +64,15 @@ export default function TextInput({
         )}
 
         <RNTextInput
-          style={styles.input}
+          style={[
+            styles.input,
+            // Apply multiline style to input
+            multiline && styles.inputMultiline,
+          ]}
           placeholderTextColor={colors.textPlaceholder}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
+          multiline={multiline} 
           {...props}
         />
       </View>
@@ -83,20 +97,32 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius.lg,
     borderColor: colors.border,
     paddingHorizontal: 16,
-    height: 45,
+    height: 45, 
     borderWidth: 1,
   },
   containerFocused: {
     borderColor: colors.primary,
     borderWidth: 2,
   },
+  // Multiline variant
+  containerMultiline: {
+    height: 'auto', 
+    minHeight: 45, 
+    maxHeight: 120, 
+    alignItems: 'flex-start', 
+    paddingVertical: spacing.md, 
+  },
   iconContainer: {
     marginRight: spacing.md,
   },
   input: {
     flex: 1,
-    color: colors.textSecondary,
+    color: colors.textPrimary, 
     fontSize: fontSize.md,
-    padding: 0,
+    padding: 0, 
+  },
+  inputMultiline: {
+    paddingTop: 0,
+    paddingBottom: 0,
   },
 });

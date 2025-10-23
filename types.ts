@@ -7,4 +7,13 @@ export interface Post {
   text: string;
   likes: number;
   isLiked: boolean;
+  comments: Comment[];  
+  commentCount: number; 
+}
+export interface Comment {
+  id: string;
+  name: string;
+  username: string;
+  text: string;
+  timestamp: string;
 }
