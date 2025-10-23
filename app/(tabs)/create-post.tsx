@@ -1,5 +1,6 @@
-import Button from '@/components/button'; // Assuming this is the correct path
-import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
+import Button from '@/components/button';
+import CharacterCountDisplay from '@/components/character-count';
+import { colors, fontSize, spacing } from '@/constants/theme';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
@@ -7,7 +8,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
-  Text,
   TextInput,
   View
 } from 'react-native';
@@ -72,15 +72,10 @@ export default function CreatePost() {
 
         {/* Footer */}
         <View style={styles.footer}>
-          <Text style={styles.charactersLeft}>Characters left</Text>
-          <Text
-            style={[
-              styles.characterCount,
-              remainingChars < 0 && styles.characterCountError,
-            ]}
-          >
-            {remainingChars}
-          </Text>
+          <CharacterCountDisplay
+            currentLength={postText.length}
+            maxLength={maxLength}
+          />
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -117,28 +112,11 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
   },
   footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     borderTopWidth: 0.5,
     borderTopColor: colors.separator,
     paddingTop: spacing.md,
     paddingBottom: spacing.lg,
     marginHorizontal: -spacing.lg, // to have full size separator
-  },
-  charactersLeft: {
-    color: colors.primary,
-    fontSize: fontSize.sm,
-    fontWeight: fontWeight.semibold,
-    marginLeft: spacing.lg, // to have full size separator
-  },
-  characterCount: {
-    color: colors.textPrimary,
-    fontSize: fontSize.md,
-    fontWeight: fontWeight.medium,
-    marginRight: spacing.lg, // to have full size separator
-  },
-  characterCountError: {
-    color: colors.error,
+    paddingHorizontal: spacing.lg,
   },
 });

@@ -16,7 +16,6 @@ export const Comment: React.FC<CommentProps> = ({ comment }) => {
       <View style={styles.header}>
         <Text style={styles.name}>{comment.name}</Text>
         <Text style={styles.username}>@{comment.username}</Text>
-        {/*This should be left*/}
         <Text style={styles.timestamp}>{comment.timestamp}</Text>
       </View>
       <Text style={styles.text}>{comment.text}</Text>
@@ -30,7 +29,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderBottomWidth: 0.5,
     borderBottomColor: colors.separator,
-    
   },
   header: {
     flexDirection: 'row',
@@ -52,7 +50,7 @@ const styles = StyleSheet.create({
     fontSize: fontSize.sm,
     fontWeight: fontWeight.regular,
     color: colors.textSecondary,
-    alignSelf: 'flex-end',
+    marginLeft: 'auto',
   },
   text: {
     fontSize: fontSize.md,
