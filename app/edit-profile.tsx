@@ -15,7 +15,7 @@ import {
 const handleBack = () => {
     // Show confirmation alert before going back 
     Alert.alert(
-      'Log Out',
+      'Discard',
       'Are you sure you want to discard changes?',
       [
         {
