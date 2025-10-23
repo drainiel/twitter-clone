@@ -1,17 +1,16 @@
 // ============================================
 // CommentModal.tsx - Modal to show comments
 // ============================================
-import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
+import { colors, spacing } from '@/constants/theme';
 import { Comment as CommentType } from '@/types';
-import React from 'react';
+import React, { useState } from 'react';
 import {
-    Modal,
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  Modal,
+  StyleSheet,
+  View
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Button from '../button';
 import { CommentInput } from './commentInput';
 import { CommentList } from './commentList';
 
@@ -23,33 +22,58 @@ interface CommentModalProps {
   postAuthor: string;
 }
 
-export const CommentModal: React.FC<CommentModalProps> = ({ 
-  visible, 
-  onClose, 
-  comments, 
+
+export const CommentModal: React.FC<CommentModalProps> = ({
+  visible,
+  onClose,
+  comments,
   onAddComment,
-  postAuthor 
+  postAuthor
 }) => {
+
+  const [text, setText] = useState('');
+
+  const handleSubmit = () => {
+    if (text.trim()) {
+      onAddComment(text.trim());
+      setText('');
+    }
+  };
+ 
+  // Wrapper for onClose to also clear text
+  const handleClose = () => {
+    setText(''); // Clear text on close
+    onClose();
+  };
+
   return (
     <Modal
       visible={visible}
       animationType="slide"
       transparent={false}
-      onRequestClose={onClose}
+      onRequestClose={handleClose}
     >
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-            <Text style={styles.closeText}>✕</Text>
-          </TouchableOpacity>
-          <Text style={styles.title}>Comments</Text>
-          <View style={styles.placeholder} />
+          <Button
+            title="Cancel"
+            variant="text"
+            onPress={handleClose} 
+          />
+          <Button
+            title="Reply"
+            shape="pill"
+            variant='primary'
+            onPress={handleSubmit} 
+            disabled={!text.trim()} 
+          />
         </View>
-        
+
         <CommentList comments={comments} />
-        
-        <CommentInput 
-          onSubmit={onAddComment}
+
+        <CommentInput
+          value={text} // Pass state down
+          onChangeText={setText} // Pass setter down
           placeholder={`Reply to ${postAuthor}...`}
         />
       </SafeAreaView>
@@ -66,24 +90,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: spacing.lg,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border,
-  },
-  closeButton: {
-    padding: spacing.s,
-  },
-  closeText: {
-    fontSize: fontSize.xl,
-    color: colors.textPrimary,
-    fontWeight: fontWeight.medium,
-  },
-  title: {
-    fontSize: fontSize.lg,
-    fontWeight: fontWeight.semibold,
-    color: colors.textPrimary,
-  },
-  placeholder: {
-    width: 40,
+    padding: spacing.xl,
+    marginTop: spacing.xl,
+    marginBottom: -spacing.xl,
   },
 });

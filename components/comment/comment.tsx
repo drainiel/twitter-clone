@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
   comment: {
     paddingVertical: spacing.md,
     paddingHorizontal: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border,
+    borderBottomWidth: 0.5,
+    borderBottomColor: colors.separator,
     
   },
   header: {
