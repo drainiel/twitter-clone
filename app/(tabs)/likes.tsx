@@ -1,27 +1,38 @@
+import { Feed } from '@/components/feed/feed';
+import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
+import { mockLikedPosts } from '@/mockeLikedData';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function likes() {
   return (
-    <ScrollView style={styles.scrollView}>
-      <View style={styles.container}>
-        <Text style={{ color: 'white' }}>Your liked posts here babe</Text>
-        <View style={{ marginBottom: 5000 }} />
-      </View>
-    </ScrollView>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerText}>Likes</Text>
+        </View>
+        <Feed posts={mockLikedPosts} />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
-    flex: 1,
-    backgroundColor: '#161E27',
-    paddingHorizontal: 20,
-  },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#161E27',
-    marginTop: 100,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  headerContainer: {
+    marginTop: spacing.xl,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  headerText: {
+    fontSize: fontSize.xxxl,
+    color: colors.textPrimary,
+    fontWeight: fontWeight.semibold,
   },
 });

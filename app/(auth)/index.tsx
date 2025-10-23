@@ -20,7 +20,7 @@ export default function index() {
       {/* !!! MUST be removed it's just to skip home during development !!! */}
       <View style={styles.removeContainer}>
         <Button 
-          title="Skip home"
+          title="Skip to home"
           variant='warning'
           size='small'
           shape='pill'

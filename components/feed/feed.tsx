@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   feedContent: {
-    marginTop: spacing.lg
+    marginTop: spacing.xxl,
   },
 });

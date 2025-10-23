@@ -1,7 +1,7 @@
 // ============================================
 // Post.tsx - Main post component
 // ============================================
-import { borderRadius, colors, spacing } from '@/constants/theme';
+import { colors, spacing } from '@/constants/theme';
 import { Post as PostType } from '@/types';
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -29,28 +29,33 @@ export const Post: React.FC<PostProps> = ({ post }) => {
 
   return (
     <View style={styles.post}>
-      <PostHeader 
-        name={post.name}
-        username={post.username}
-        timestamp={post.timestamp}
-      />
-      <PostContent text={post.text} />
-      <PostActions 
-        likes={likes}
-        isLiked={isLiked}
-        onLike={handleLike}
-      />
-    </View>
+      <View style={styles.postContent}>
+        <PostHeader
+          name={post.name}
+          username={post.username}
+          timestamp={post.timestamp}
+        />
+        <PostContent text={post.text} />
+        <PostActions
+          likes={likes}
+          isLiked={isLiked}
+          onLike={handleLike}
+        />
+      </View>
+    </View >
   );
 };
 
 const styles = StyleSheet.create({
   post: {
     backgroundColor: colors.background,
-    borderRadius: borderRadius.md,
-    padding: spacing.lg,
+    padding: spacing.sm,
     marginBottom: spacing.md,
-    borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: colors.separator,
+    borderBottomWidth: 0.5,
+    marginHorizontal: -spacing.sm,
   },
+  postContent:{
+    marginHorizontal: spacing.xxl,
+  }
 });

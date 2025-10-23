@@ -10,7 +10,7 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
-import { borderRadius, colors, fontSize, fontWeight, spacing } from '../constants/theme';
+import { borderRadius, colors, fontSize, fontWeight, iconSize, spacing } from '../constants/theme';
 import Button from './button';
 
 interface DatePickerProps {
@@ -110,7 +110,7 @@ export default function DatePicker({
                 onPress={openPicker}
                 activeOpacity={0.7}
             >
-                <Ionicons name={icon} size={20} color={colors.textSecondary} />
+                <Ionicons name={icon} size={iconSize.lg} color={colors.textSecondary} />
                 <Text style={styles.dateText}>
                     {value ? formatDate(value) : placeholder}
                 </Text>

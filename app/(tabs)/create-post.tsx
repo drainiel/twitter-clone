@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     paddingHorizontal: spacing.lg,
     marginTop: spacing.xl,
-    marginBottom: 100, // Bcs keyboard does not appear on simulator
+    marginBottom: 100,
   },
   header: {
     flexDirection: 'row',
@@ -120,20 +120,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderTopWidth: 1,
-    borderTopColor: colors.backgroundSecondary,
+    borderTopWidth: 0.5,
+    borderTopColor: colors.separator,
     paddingTop: spacing.md,
     paddingBottom: spacing.lg,
+    marginHorizontal: -spacing.lg, // to have full size separator
   },
   charactersLeft: {
     color: colors.primary,
     fontSize: fontSize.sm,
     fontWeight: fontWeight.semibold,
+    marginLeft: spacing.lg, // to have full size separator
   },
   characterCount: {
     color: colors.textPrimary,
     fontSize: fontSize.md,
     fontWeight: fontWeight.medium,
+    marginRight: spacing.lg, // to have full size separator
   },
   characterCountError: {
     color: colors.error,

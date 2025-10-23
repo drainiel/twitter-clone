@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { borderRadius, colors, fontSize, fontWeight, spacing } from '../constants/theme';
+import { borderRadius, colors, fontSize, fontWeight, iconSize, spacing } from '../constants/theme';
 
 interface CustomTextInputProps extends TextInputProps {
   icon?: keyof typeof Ionicons.glyphMap;
@@ -44,7 +44,7 @@ export default function TextInput({
           >
             <Ionicons
               name={icon}
-              size={20}
+              size={iconSize.lg}
               color={isFocused ? colors.primary : colors.textTertiary}
             />
           </TouchableOpacity>

@@ -1,7 +1,8 @@
 // ============================================
 // PostActions.tsx - Like button
 // ============================================
-import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
+import { colors, fontSize, fontWeight, iconSize, spacing } from '@/constants/theme';
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -24,12 +25,15 @@ export const PostActions: React.FC<PostActionsProps> = ({ likes, isLiked, onLike
 
   return (
     <View style={styles.actions}>
-      <TouchableOpacity 
-        style={styles.likeButton} 
+      <TouchableOpacity
+        style={styles.likeButton}
         onPress={onLike}
         activeOpacity={0.7}
       >
-        <Text style={styles.likeIcon}>{isLiked ? '❤️' : '🤍'}</Text>
+        <Ionicons 
+        name={isLiked ? "heart" : "heart-outline"} 
+        style={[styles.likeIcon, isLiked ? styles.iconActive : styles.iconInactive]}
+        />
         <Text style={[styles.likeCount, isLiked && styles.likeCountActive]}>
           {formatLikes(likes)}
         </Text>
@@ -49,15 +53,21 @@ const styles = StyleSheet.create({
     gap: spacing.s,
     paddingVertical: spacing.s,
   },
-  likeIcon: {
-    fontSize: fontSize.lg,
-  },
   likeCount: {
-    fontSize: fontSize.sm,
+    fontSize: fontSize.xs,
     fontWeight: fontWeight.medium,
     color: colors.textSecondary,
   },
   likeCountActive: {
-    color: colors.error,
+    color: colors.liked, 
   },
+  likeIcon: {
+    fontSize: iconSize.md,
+  },
+  iconActive:{
+    color: colors.liked,
+  },
+  iconInactive:{
+    color: colors.textSecondary,
+  }
 });

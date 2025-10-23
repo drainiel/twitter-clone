@@ -24,6 +24,11 @@ export const colors = {
   border: '#1E2936',
   borderFocus: '#208BFE',
   handleBar: '#3A4A5A',
+  separator: '#284254',
+
+  // Likes color
+  liked: '#FF329B',
+  notLiked: '#2A3845',
   
   // Opacity variants (useful for overlays)
   overlay: 'rgba(0, 0, 0, 0.6)',
@@ -67,6 +72,12 @@ export const fontWeight = {
   bold: '700' as const,
 };
 
+export const iconSize = {
+  md: 18, 
+  lg: 20,
+  bigLogo: 120, // used in index as main logo
+} as const;
+
 // Combined theme object (optional, for convenience)
 export const theme = {
   colors,
@@ -83,3 +94,4 @@ export type BorderRadius = typeof borderRadius;
 export type FontSize = typeof fontSize;
 export type FontWeight = typeof fontWeight;
 export type Theme = typeof theme;
+export type IconSize = typeof iconSize;

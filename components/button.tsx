@@ -7,7 +7,7 @@ import {
   TouchableOpacityProps,
   View
 } from 'react-native';
-import { borderRadius, colors, fontSize, fontWeight, spacing } from '../constants/theme';
+import { borderRadius, colors, fontSize, fontWeight, iconSize, spacing } from '../constants/theme';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
@@ -51,7 +51,7 @@ export default function Button({
         {variant === 'warning' && (
           <Ionicons
             name="warning"
-            size={20}
+            size={iconSize.lg}
             color={colors.textPrimary}
             style={styles.icon}
           />
