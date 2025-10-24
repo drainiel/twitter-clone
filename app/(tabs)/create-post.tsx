@@ -12,6 +12,8 @@ import {
   View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import useConfirmationAlert from '../hoooks/alert';
+
 
 export default function CreatePost() {
   const router = useRouter();
@@ -19,11 +21,22 @@ export default function CreatePost() {
   const maxLength = 300;
   const remainingChars = maxLength - postText.length;
   const canPost = postText.trim().length > 0 && postText.length <= maxLength;
+  const { showConfirmationAlert } = useConfirmationAlert();
 
   const handleCancel = () => {
-    Keyboard.dismiss();
-    router.back();
+    showConfirmationAlert({
+      title: 'Delete draft',
+      message: 'Are you sure you want to delete your draft?',
+      confirmButtonText: 'Delete',
+      onConfirm: () => {
+        // Navigate back 
+        Keyboard.dismiss();
+        router.back();
+      },
+      cancelButtonText: 'Cancel'
+    });
   };
+
 
   const handlePost = () => {
     if (canPost) {
@@ -41,10 +54,10 @@ export default function CreatePost() {
       >
         {/* Header */}
         <View style={styles.header}>
-          <Button 
-            title="Cancel" 
-            variant="text" 
-            onPress={handleCancel} 
+          <Button
+            title="Cancel"
+            variant="text"
+            onPress={handleCancel}
           />
 
           <Button

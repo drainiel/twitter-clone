@@ -7,15 +7,14 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React from 'react';
 import {
-  Alert,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import useConfirmationAlert from '../hoooks/alert';
 // --- Placeholder User Data ---
 // Replace this with actual user data fetching logic later
 const mockUser = {
@@ -29,31 +28,20 @@ const mockUser = {
 
 export default function ProfileScreen() {
   const handleEditProfile = () => {
-    // TODO: Implement navigation or modal for editing profile
    router.push('/edit-profile');
   };
 
-  const handleLogoutPress = () => {
-    // Show confirmation alert before logging out
-    Alert.alert(
-      'Log Out',
-      'Are you sure you want to log out?',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        {
-          text: 'Log Out',
-          onPress: () => {
-            // Navigate back to the authentication stack's entry point
-            router.replace('/(auth)');
-          },
-          style: 'destructive',
-        },
-      ],
-      { cancelable: true }
-    );
+const { showConfirmationAlert } = useConfirmationAlert();
+const handleLogoutPress = () => {
+    showConfirmationAlert({
+    title: 'Log out',
+    message: 'Are you sure you want to log out?',
+    confirmButtonText: 'Log out',
+    onConfirm: () => {
+      // Navigate back to profile 
+      router.replace('/(tabs)/profile');
+    },
+  });
   };
 
   return (

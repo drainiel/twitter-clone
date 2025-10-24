@@ -3,36 +3,27 @@ import TextInput from '@/components/text-input';
 import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
 import { router } from 'expo-router';
 import {
-  Alert,
   Keyboard,
   ScrollView,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
-  View,
+  View
 } from 'react-native';
+import useConfirmationAlert from './hoooks/alert';
 
+const { showConfirmationAlert } = useConfirmationAlert();
 const handleBack = () => {
-    // Show confirmation alert before going back 
-    Alert.alert(
-      'Discard',
-      'Are you sure you want to discard changes?',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        {
-          text: 'Discard',
-          onPress: () => {
-            // Navigate back to profile
-            router.replace('/(tabs)/profile');
-          },
-          style: 'destructive',
-        },
-      ],
-      { cancelable: true }
-    );
+    showConfirmationAlert({
+    title: 'Discard Changes',
+    message: 'Are you sure you want to discard your changes?',
+    confirmButtonText: 'Discard',
+    onConfirm: () => {
+      // Navigate back to profile 
+      router.replace('/(tabs)/profile');
+    },
+    cancelButtonText: 'Keep editing'
+  });
   };
 
 export default function editProfile() {
