@@ -39,7 +39,7 @@ const handleLogoutPress = () => {
     confirmButtonText: 'Log out',
     onConfirm: () => {
       // Navigate back to profile 
-      router.replace('/(tabs)/profile');
+      router.replace('/(auth)')
     },
   });
   };

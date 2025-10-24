@@ -1,6 +1,3 @@
-thing to add:
-    1.for date time picker add logic control on minimun 
-    age required (13 y/o).
-
-    3. solve double click on button to post.
+Bug fixing:
+    1. solve double click on button to reply to comments.
 

@@ -15,83 +15,86 @@ import {
 } from 'react-native';
 
 export default function createAccount() {
-  const [birthDate, setBirthDate] = useState(new Date(2005, 1, 25)); // Default: 25 Feb 2005
+  const [birthDate, setBirthDate] = useState(new Date(2005, 1, 25)); // Default date it's casual
+  // Calculate the maximum date allowed (13 years ago)
+  const maxBirthDate = new Date();
+  maxBirthDate.setFullYear(maxBirthDate.getFullYear() - 13);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <ScrollView style={styles.scrollView} keyboardShouldPersistTaps="handled">
-            <View style={styles.topHeaderContainer}>
-              <Text style={styles.TopHeaderText}>Step 1 of 2</Text>
-            </View>  
-            <View style={styles.headerContainer}>
-              <Text style={styles.headerText}>Your account</Text>
-            </View>  
-            {/* optional warning button */}
-            <Button 
-              title="Please enter all required fields."
-              variant='warning'
-            />
-            {/* Email input */}
-            <TextInput
-              placeholder="Enter your email address"
-              label='Email'
-              icon="mail"
-              autoCapitalize="none"
-              keyboardType="email-address"
-            />
-            
-            {/* Password input */}
-            <TextInput
-              placeholder="Choose your password"
-              label='Password'
-              icon="lock-closed"
-              autoCapitalize="none"
-              keyboardType="default"
-              secureTextEntry
-            />
-            
-            {/* Birth date picker */}
-            <DatePicker
-              label="Your birth date"
-              value={birthDate}
-              onChange={setBirthDate}
-              placeholder="Select your birth date"
-              icon="calendar"
-              maximumDate={new Date()} // Non permette date future
-            />
+      <ScrollView style={styles.scrollView} keyboardShouldPersistTaps="handled">
+        <View style={styles.topHeaderContainer}>
+          <Text style={styles.TopHeaderText}>Step 1 of 2</Text>
+        </View>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerText}>Your account</Text>
+        </View>
+        {/* optional warning button */}
+        <Button
+          title="Please enter all required fields."
+          variant='warning'
+        />
+        {/* Email input */}
+        <TextInput
+          placeholder="Enter your email address"
+          label='Email'
+          icon="mail"
+          autoCapitalize="none"
+          keyboardType="email-address"
+        />
 
-            <Text style={styles.policyText}>
-              By creating an account you agree to the{' '}
-              <Text 
-                style={styles.link}
-                onPress={() => Linking.openURL('https://jetop.com')}
-              >
-                Terms of Service
-              </Text>
-              {' '}and{' '}
-              <Text 
-                style={styles.link}
-                onPress={() => Linking.openURL('https://tinyurl.com/prh87s9b')}
-              >
-                Privacy Policy
-              </Text>
-              .
+        {/* Password input */}
+        <TextInput
+          placeholder="Choose your password"
+          label='Password'
+          icon="lock-closed"
+          autoCapitalize="none"
+          keyboardType="default"
+          secureTextEntry
+        />
+
+        {/* Birth date picker */}
+        <DatePicker
+          label="Your birth date"
+          value={birthDate}
+          onChange={setBirthDate}
+          placeholder="Select your birth date"
+          icon="calendar"
+          maximumDate={maxBirthDate} // Pass the calculated max date
+        />
+
+        <Text style={styles.policyText}>
+          By creating an account you agree to the{' '}
+          <Text
+            style={styles.link}
+            onPress={() => Linking.openURL('https://jetop.com')}
+          >
+            Terms of Service
           </Text>
-          <View style={styles.buttonsContainer}>
-            <Button 
-              title="Back"
-              size='small'
-              variant='secondary'
-              onPress={() => router.push('/(auth)')}
-            />
-            <Button 
-              title="Next"
-              size='small'
-              onPress={() => router.push('/(auth)/choose-username')}
-            />
-          </View>
-        </ScrollView>    
-     </TouchableWithoutFeedback>
+          {' '}and{' '}
+          <Text
+            style={styles.link}
+            onPress={() => Linking.openURL('https://tinyurl.com/prh87s9b')}
+          >
+            Privacy Policy
+          </Text>
+          .
+        </Text>
+        <View style={styles.buttonsContainer}>
+          <Button
+            title="Back"
+            size='small'
+            variant='secondary'
+            onPress={() => router.push('/(auth)')}
+          />
+          <Button
+            title="Next"
+            size='small'
+            onPress={() => router.push('/(auth)/choose-username')}
+          />
+        </View>
+      </ScrollView>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -117,7 +120,7 @@ const styles = StyleSheet.create({
     fontSize: fontSize.sm,
     color: colors.textSecondary,
     fontWeight: fontWeight.regular,
-  },    
+  },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
