@@ -1,7 +1,6 @@
 import Button from '@/components/button';
 import { Feed } from '@/components/feed/feed';
 import { colors, fontSize, fontWeight, iconSize, spacing } from '@/constants/theme';
-import { mockPosts } from '@/mockData';
 import { Post as PostType } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
@@ -15,33 +14,34 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useConfirmationAlert from '../hoooks/alert';
+
 // --- Placeholder User Data ---
-// Replace this with actual user data fetching logic later
+// Will replace this with actual user data fetching logic later
 const mockUser = {
   name: 'Daniele',
   username: 'drainiel.jetop.social',
   // Assuming mockPosts are the posts *by this user* for now
-  // In a real app, you'd filter or fetch posts specifically for the logged-in user
-  posts: mockPosts as PostType[],
+  // In a real app, I'd filter or fetch posts specifically for the logged-in user
+  posts: [] as PostType[],
 };
 // --- End Placeholder Data ---
 
 export default function ProfileScreen() {
   const handleEditProfile = () => {
-   router.push('/edit-profile');
+    router.push('/edit-profile');
   };
 
-const { showConfirmationAlert } = useConfirmationAlert();
-const handleLogoutPress = () => {
+  const { showConfirmationAlert } = useConfirmationAlert();
+  const handleLogoutPress = () => {
     showConfirmationAlert({
-    title: 'Log out',
-    message: 'Are you sure you want to log out?',
-    confirmButtonText: 'Log out',
-    onConfirm: () => {
-      // Navigate back to profile 
-      router.replace('/(auth)')
-    },
-  });
+      title: 'Log out',
+      message: 'Are you sure you want to log out?',
+      confirmButtonText: 'Log out',
+      onConfirm: () => {
+        // Navigate back to profile 
+        router.replace('/(auth)')
+      },
+    });
   };
 
   return (
@@ -77,12 +77,15 @@ const handleLogoutPress = () => {
         </View>
 
         {/* --- Posts Section --- */}
-        <Text style={styles.postsHeader}>Posts</Text>
+        <Text style={styles.postsHeader}>Your posts</Text>
 
         {mockUser.posts.length > 0 ? (
           <Feed posts={mockUser.posts} />
         ) : (
           <View style={styles.noPostsContainer}>
+            <View style={styles.iconCircle}>
+              <Ionicons name="chatbubble-ellipses-outline" size={50} color={colors.textPlaceholder} />
+            </View>
             <Text style={styles.noPostsText}>No posts yet.</Text>
           </View>
         )}
@@ -149,5 +152,14 @@ const styles = StyleSheet.create({
   noPostsText: {
     fontSize: fontSize.md,
     color: colors.textSecondary,
+  },
+  iconCircle: {
+    width: 100,
+    height: 100,
+    borderRadius: 50, // Half of width/height to make it circular
+    backgroundColor: colors.backgroundSecondary, // Or any background color you prefer
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: spacing.xl,
   },
 });

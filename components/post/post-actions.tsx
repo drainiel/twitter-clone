@@ -47,7 +47,7 @@ export const PostActions: React.FC<PostActionsProps> = ({
   });
 
   const formatCount = (count: number): string => {
-    // Use nullish coalescing (??) to default null/undefined to 0
+  // Use nullish coalescing (??) to default null/undefined to 0
   const safeCount = count ?? 0;
 
     if (safeCount >= 1000000) {

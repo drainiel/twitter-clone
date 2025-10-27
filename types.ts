@@ -1,4 +1,4 @@
-// types.ts - Post data types
+// types.ts - data types
 export interface Post {
   id: string;
   name: string;

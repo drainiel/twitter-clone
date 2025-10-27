@@ -1,5 +1,5 @@
 import Button from '@/components/button';
-import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
+import { colors, fontSize, fontWeight, iconSize, spacing } from '@/constants/theme';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: colors.primary,
-    fontSize: 120,
+    fontSize: iconSize.bigLogo,
     marginBottom: spacing.xl,
   },
   

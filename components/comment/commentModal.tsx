@@ -68,7 +68,6 @@ export const CommentModal: React.FC<CommentModalProps> = ({
             disabled={!text.trim()} 
           />
         </View>
-
         <CommentList comments={comments} />
 
         <CommentInput
