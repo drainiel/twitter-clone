@@ -1,6 +1,6 @@
 import Button from '@/components/button';
 import { Feed } from '@/components/feed/feed';
-import { colors, fontSize, fontWeight, iconSize, spacing } from '@/constants/theme';
+import { colors, fontSize, fontWeight, iconSize, spacing, separator } from '@/constants/theme';
 import { Post as PostType } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useConfirmationAlert from '../hoooks/alert';
+import { mockPosts } from '@/mockData';
 
 // --- Placeholder User Data ---
 // Will replace this with actual user data fetching logic later
@@ -22,7 +23,7 @@ const mockUser = {
   username: 'drainiel.jetop.social',
   // Assuming mockPosts are the posts *by this user* for now
   // In a real app, I'd filter or fetch posts specifically for the logged-in user
-  posts: [] as PostType[],
+  posts: mockPosts as PostType[],
 };
 // --- End Placeholder Data ---
 
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.xxl,
     paddingTop: spacing.lg,
     paddingBottom: spacing.xl,
-    borderBottomWidth: 0.5,
+    borderBottomWidth: separator.small,
     borderBottomColor: colors.separator,
   },
   actionsContainer: {
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50, // Half of width/height to make it circular
-    backgroundColor: colors.backgroundSecondary, // Or any background color you prefer
+    backgroundColor: colors.backgroundSecondary,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: spacing.xl,

@@ -89,6 +89,11 @@ export const theme = {
   fontWeight,
 } as const;
 
+// Useful to change separator widht in all screen at once
+export const separator = {
+  small : 0.5,
+} as const;
+
 // Type exports for TypeScript
 export type Colors = typeof colors;
 export type Spacing = typeof spacing;

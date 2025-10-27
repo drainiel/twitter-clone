@@ -1,4 +1,4 @@
-import { colors, spacing } from '@/constants/theme';
+import { colors, spacing, separator } from '@/constants/theme';
 import { Post as PostType } from '@/types';
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     padding: spacing.sm,
     marginBottom: spacing.md,
     borderColor: colors.separator,
-    borderBottomWidth: 0.5,
+    borderBottomWidth: separator.small,
     marginHorizontal: -spacing.sm,
   },
   postContent: {

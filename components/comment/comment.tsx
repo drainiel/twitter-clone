@@ -1,4 +1,4 @@
-import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
+import { colors, fontSize, fontWeight, spacing, separator } from '@/constants/theme';
 import { Comment as CommentType } from '@/types';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   comment: {
     paddingVertical: spacing.md,
     paddingHorizontal: 24,
-    borderBottomWidth: 0.5,
+    borderBottomWidth: separator.small,
     borderBottomColor: colors.separator,
   },
   header: {
