@@ -1,6 +1,3 @@
-// ============================================
-// date-picker.tsx 
-// ============================================
 import { Ionicons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useState } from 'react';
@@ -17,15 +14,39 @@ import { borderRadius, colors, fontSize, fontWeight, iconSize, spacing } from '.
 import Button from './button';
 
 interface DatePickerProps {
+    /** Optional label displayed above the date picker button.
+     */
     label?: string;
+    /** The currently selected date value.
+     */
     value: Date;
+    /** Callback function invoked when a date is selected.
+     * @param date - The newly selected date
+     */
     onChange: (date: Date) => void;
+    /** Placeholder text displayed when no date is selected.
+     * @default 'Select date'
+     */
     placeholder?: string;
+    /** Ionicons icon name to display on the date picker button.
+     * @default 'calendar'
+     */
     icon?: keyof typeof Ionicons.glyphMap;
+    /** The maximum selectable date (dates after this will be disabled).
+     */
     maximumDate?: Date;
+    /** The minimum selectable date (dates before this will be disabled).
+     */
     minimumDate?: Date;
 }
 
+/**
+ * A customizable date picker component with a modal bottom sheet interface.
+ * Features a button trigger that opens an animated modal with a native date picker spinner.
+ * Supports swipe-to-dismiss gesture and includes min/max date constraints.
+ *
+ * @returns A React component with a date picker button and modal
+ */
 export default function DatePicker({
     label,
     value,
@@ -39,6 +60,10 @@ export default function DatePicker({
     const [slideAnim] = useState(new Animated.Value(0));
     const [pan] = useState(new Animated.Value(0));
 
+    /**
+     * Pan responder for handling swipe-to-dismiss gesture on the modal.
+     * Allows users to drag down the modal to close it.
+     */
     const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onMoveShouldSetPanResponder: (_, gestureState) => {
@@ -61,6 +86,12 @@ export default function DatePicker({
         },
     });
 
+    /**
+     * Formats a Date object to a human-readable string in DD/MM/YYYY format.
+     *
+     * @param date - The date to format
+     * @returns Formatted date string (e.g., "25/12/2024")
+     */
     const formatDate = (date: Date) => {
         const day = date.getDate();
         const month = date.getMonth() + 1;
@@ -68,12 +99,21 @@ export default function DatePicker({
         return `${day}/${month}/${year}`;
     };
 
+    /**
+     * Handles date changes from the native DateTimePicker component.
+     *
+     * @param event - The change event from DateTimePicker
+     * @param selectedDate - The newly selected date (if any)
+     */
     const handleDateChange = (event: any, selectedDate?: Date) => {
         if (selectedDate) {
             onChange(selectedDate);
         }
     };
 
+    /**
+     * Opens the date picker modal with a slide-up animation.
+     */
     const openPicker = () => {
         setShowPicker(true);
         pan.setValue(0);
@@ -85,6 +125,9 @@ export default function DatePicker({
         }).start();
     };
 
+    /**
+     * Closes the date picker modal with a slide-down animation.
+     */
     const closePicker = () => {
         Animated.timing(slideAnim, {
             toValue: 0,
@@ -199,7 +242,7 @@ const styles = StyleSheet.create({
     },
     pickerContainer: {
         backgroundColor: colors.background,
-        borderTopLeftRadius: fontSize.xxl, 
+        borderTopLeftRadius: fontSize.xxl,
         borderTopRightRadius: fontSize.xxl,
         paddingBottom: 40,
     },
@@ -221,7 +264,7 @@ const styles = StyleSheet.create({
         marginTop: spacing.sm,
     },
     picker: {
-        width: '100%', 
+        width: '100%',
         height: 200,
     },
     buttonContainer: {

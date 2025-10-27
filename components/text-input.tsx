@@ -1,7 +1,3 @@
-// ============================================
-// text-input.tsx - text field input with
-//  different styles, label...
-// ============================================
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
@@ -21,13 +17,40 @@ import {
   spacing,
 } from '../constants/theme';
 
+/**
+ * Props for the CustomTextInput component.
+ * Extends React Native's TextInputProps with additional custom properties.
+ */
 interface CustomTextInputProps extends TextInputProps {
+  /** Optional Ionicons icon name to display inside the input field.
+   */
   icon?: keyof typeof Ionicons.glyphMap;
+  /** Callback function invoked when the icon is pressed.
+   * If not provided, the icon will not be interactive.
+   */
   onIconPress?: () => void;
+  /** Optional label text displayed above the input field.
+   */
   label?: string;
+  /** Whether the input should support multiple lines of text.
+   * When enabled, the input expands vertically with a maximum height constraint.
+   */
   multiline?: boolean;
 }
 
+/**
+ * A customizable text input component with optional icon, label, and multiline support.
+ * Features focus state styling, configurable icon interactions, and adaptive height for multiline text.
+ * 
+ * The component supports all standard React Native TextInput props and adds:
+ * - Optional leading icon with press handler
+ * - Label text above the input
+ * - Focus state with border color change
+ * - Multiline mode with auto-expanding height (up to max height)
+ *
+ * @param props - The component props extending TextInputProps
+ * @returns A styled text input component with optional icon and label
+ */
 export default function TextInput({
   icon,
   onIconPress,
@@ -36,6 +59,10 @@ export default function TextInput({
   multiline, 
   ...props
 }: CustomTextInputProps) {
+  /**
+   * Tracks whether the input field is currently focused.
+   * Used to apply focus-specific styling (e.g., border color change).
+   */
   const [isFocused, setIsFocused] = useState(false);
 
   return (
@@ -45,7 +72,6 @@ export default function TextInput({
         style={[
           styles.container,
           isFocused && styles.containerFocused,
-          // Apply multiline style if prop is true
           multiline && styles.containerMultiline,
         ]}
       >
@@ -66,7 +92,6 @@ export default function TextInput({
         <RNTextInput
           style={[
             styles.input,
-            // Apply multiline style to input
             multiline && styles.inputMultiline,
           ]}
           placeholderTextColor={colors.textPlaceholder}
@@ -104,7 +129,6 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
     borderWidth: 2,
   },
-  // Multiline variant
   containerMultiline: {
     height: 'auto', 
     minHeight: 45, 

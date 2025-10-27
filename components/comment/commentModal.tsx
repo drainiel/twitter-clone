@@ -1,6 +1,3 @@
-// ============================================
-// CommentModal.tsx - Modal to show comments
-// ============================================
 import { colors, spacing } from '@/constants/theme';
 import { Comment as CommentType } from '@/types';
 import React, { useState } from 'react';
@@ -14,15 +11,41 @@ import Button from '../button';
 import { CommentInput } from './commentInput';
 import { CommentList } from './commentList';
 
+/**
+ * Props for the CommentModal component.
+ */
 interface CommentModalProps {
+  /** Whether the modal is visible.
+   */
   visible: boolean;
+
+  /** Callback function invoked when the modal should be closed.
+   */
   onClose: () => void;
+
+  /** Array of existing comments to display in the modal.
+   */
   comments: CommentType[];
+
+  /** Callback function invoked when a new comment is submitted.
+   * @param text - The text content of the new comment
+   */
   onAddComment: (text: string) => void;
+  
+  /** The name of the post author, used in the input placeholder.
+   */
   postAuthor: string;
 }
 
-
+/**
+ * A full-screen modal component for viewing and adding comments to a post.
+ * Features a header with Cancel and Reply buttons, a scrollable list of existing comments,
+ * and an input field for composing new comments. The Reply button is disabled when the
+ * input is empty. Clears the input text when the modal is closed or a comment is submitted.
+ *
+ * @param props - The component props
+ * @returns A full-screen modal with comment list and input interface
+ */
 export const CommentModal: React.FC<CommentModalProps> = ({
   visible,
   onClose,

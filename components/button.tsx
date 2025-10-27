@@ -1,7 +1,8 @@
-// ============================================
-// button.tsx - Theme button with different
-//  variants, size and shapes.
-// ============================================
+/**
+ * A customizable button component with different visual styles, sizes, and shapes.
+ * It supports primary, secondary, warning, and text-only variants.
+ */
+
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import {
@@ -13,13 +14,36 @@ import {
 } from 'react-native';
 import { borderRadius, colors, fontSize, fontWeight, iconSize, spacing } from '../constants/theme';
 
+/**
+ * Props for the Button component.
+ * Extends standard TouchableOpacityProps.
+ */
 interface ButtonProps extends TouchableOpacityProps {
+  /** The text displayed on the button. */
   title: string;
+
+  /** Visual style variant of the button.
+   * @default 'primary'
+   */
   variant?: 'primary' | 'secondary' | 'warning' | 'text';
+
+  /** Size category of the button, affecting padding and font size.
+   * @default 'large'
+   */
   size?: 'small' | 'medium' | 'large';
+
+  /** Shape of the button's corners.
+   * @default 'default' (slightly rounded)
+   */
   shape?: 'default' | 'pill';
+  
+  // Note: 'disabled' is inherited from TouchableOpacityProps
 }
 
+/**
+ * @param {ButtonProps} props - The props for the Button component.
+ * @returns {React.ReactElement} The rendered button component.
+ */
 export default function Button({
   title,
   variant = 'primary',
@@ -44,7 +68,7 @@ export default function Button({
 
         // Shape styles
         shape === 'pill' && styles.pillButton,
-        
+
         // Disabled style (must be last to override)
         disabled && styles.disabledButton,
       ]}
@@ -86,7 +110,7 @@ export default function Button({
 const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.primary,
-    paddingVertical: 13, // Default 'large' padding
+    paddingVertical: 13,
     borderRadius: borderRadius.sm,
     alignItems: 'center',
     marginBottom: spacing.md,
@@ -103,7 +127,7 @@ const styles = StyleSheet.create({
     fontSize: fontSize.md, // Default 'large' text
     fontWeight: fontWeight.semibold,
   },
-  
+
   // --- Variants ---
   secondaryButton: {
     backgroundColor: colors.backgroundSecondary,

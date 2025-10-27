@@ -1,15 +1,25 @@
-// ============================================
-// comment.tsx - Single comment component
-// ============================================
 import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
 import { Comment as CommentType } from '@/types';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+/**
+ * Props for the Comment component.
+ */
 interface CommentProps {
+  /** The comment data object containing author information, text content, and timestamp.
+   */
   comment: CommentType;
 }
 
+/**
+ * A component that displays a single comment with author information and content.
+ * Shows the commenter's name, username (with @ prefix), timestamp, and comment text
+ * in a structured layout with a bottom border separator.
+ *
+ * @param props - The component props
+ * @returns A styled comment card with header and text content
+ */
 export const Comment: React.FC<CommentProps> = ({ comment }) => {
   return (
     <View style={styles.comment}>

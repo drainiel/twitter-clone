@@ -3,10 +3,23 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 interface CharacterCountDisplayProps {
+  /** The current number of characters entered.
+   */
   currentLength: number;
+
+  /** The maximum allowed number of characters.
+   */
   maxLength: number;
 }
 
+/**
+ * A component that displays the remaining character count for a text input.
+ * Shows the number of characters left based on the current length and maximum allowed length.
+ * 
+ * @param props.currentLength - The current number of characters entered
+ * @param props.maxLength - The maximum allowed number of characters
+ * @returns A React component displaying "Characters left" label and the remaining count
+ */
 const CharacterCountDisplay: React.FC<CharacterCountDisplayProps> = ({
   currentLength,
   maxLength,

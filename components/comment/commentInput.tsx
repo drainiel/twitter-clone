@@ -1,6 +1,3 @@
-// ============================================
-// commentInput.tsx - Input for new comments
-// ============================================
 import CharacterCountDisplay from '@/components/character-count';
 import TextInput from '@/components/text-input';
 import { colors, spacing } from '@/constants/theme';
@@ -12,30 +9,50 @@ import {
   View
 } from 'react-native';
 
+/**
+ * Props for the CommentInput component.
+ */
 interface CommentInputProps {
-  value: string; 
-  onChangeText: (text: string) => void; 
+  /** The current text value of the input field.
+   */
+  value: string;
+
+  /** Callback function invoked when the text input value changes.
+   * @param text - The new text value
+   */
+  onChangeText: (text: string) => void;
+  
+  /** Placeholder text displayed when the input is empty.
+   * @default 'Add a comment...'
+   */
   placeholder?: string;
+
+  /** Maximum number of characters allowed in the input.
+   * @default 280
+   */
   maxLength?: number;
 }
 
+/**
+ * A component that provides a text input field for adding comments with character count tracking.
+ * Features a multiline input with keyboard avoidance behavior and displays the remaining
+ * character count below the input field. Adapts keyboard behavior based on platform (iOS/Android).
+ *
+ * @param props - The component props
+ * @returns A keyboard-aware comment input with character counter
+ */
 export const CommentInput: React.FC<CommentInputProps> = ({
-  value, // Use value from props
-  onChangeText, // Use onChangeText from props
+  value,
+  onChangeText,
   placeholder = 'Add a comment...',
   maxLength = 280,
 }) => {
-
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
       <View style={styles.inputContainer}>
-        {/* We wrap the TextInput in a View with flex: 1
-          so it expands to fill the available space in the row.
-        */}
         <View style={styles.inputWrapper}>
           <TextInput
             placeholder={placeholder}
@@ -46,14 +63,12 @@ export const CommentInput: React.FC<CommentInputProps> = ({
           />
         </View>
       </View>
-      {/* --- ADD THIS SECTION --- */}
       <View style={styles.footer}>
         <CharacterCountDisplay
           currentLength={value.length}
           maxLength={maxLength}
         />
       </View>
-      {/* --- END ADD --- */}
     </KeyboardAvoidingView>
   );
 };
@@ -75,5 +90,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     paddingBottom: spacing.lg,
   },
-
 });

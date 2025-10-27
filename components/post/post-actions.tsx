@@ -1,6 +1,3 @@
-// ============================================
-// PostActions.tsx - Like and Comment buttons
-// ============================================
 import { colors, fontSize, fontWeight, iconSize, spacing } from '@/constants/theme';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useEffect } from 'react';
@@ -13,14 +10,36 @@ import Animated, {
 
 const AnimatedIcon = Animated.createAnimatedComponent(Ionicons);
 
+/**
+ * Props for the PostActions component.
+ */
 interface PostActionsProps {
+  /** The number of likes on the post.
+   */
   likes: number;
+  /** Whether the current user has liked the post.
+   */
   isLiked: boolean;
+  /** Callback function invoked when the like button is pressed.
+   */
   onLike: () => void;
+  /** The number of comments on the post.
+   */
   commentCount: number;
+  /** Callback function invoked when the comment button is pressed.
+   */
   onComment: () => void;
 }
 
+/**
+ * A component that displays interactive action buttons for a post (like and comment).
+ * Features an animated heart icon that scales when liked, and formatted count displays
+ * that abbreviate large numbers (e.g., 1.5K, 2.3M). The like button changes color and
+ * icon style based on the liked state.
+ *
+ * @param props - The component props
+ * @returns A React component with like and comment action buttons
+ */
 export const PostActions: React.FC<PostActionsProps> = ({ 
   likes, 
   isLiked, 
@@ -28,6 +47,9 @@ export const PostActions: React.FC<PostActionsProps> = ({
   commentCount,
   onComment 
 }) => {
+  /**
+   * Shared value for controlling the scale animation of the like icon.
+   */
   const likeScale = useSharedValue(1);
 
   useEffect(() => {
@@ -40,15 +62,24 @@ export const PostActions: React.FC<PostActionsProps> = ({
     }
   }, [isLiked, likeScale]);
 
+  /**
+   * Animated style that applies the scale transformation to the like icon.
+   */
   const animatedLikeStyle = useAnimatedStyle(() => {
     return {
       transform: [{ scale: likeScale.value }],
     };
   });
 
+  /**
+   * Formats a number count into a human-readable string with K/M suffixes.
+   * Converts large numbers to abbreviated format (e.g., 1500 → "1.5K", 2000000 → "2.0M").
+   *
+   * @param count - The number to format
+   * @returns Formatted string representation of the count
+   */
   const formatCount = (count: number): string => {
-  // Use nullish coalescing (??) to default null/undefined to 0
-  const safeCount = count ?? 0;
+    const safeCount = count ?? 0;
 
     if (safeCount >= 1000000) {
       return `${(safeCount / 1000000).toFixed(1)}M`;
