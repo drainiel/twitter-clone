@@ -48,7 +48,7 @@ export default function ProfileScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        {/* --- Profile Header --- */}
+        {/* Profile Header */}
         <View style={styles.headerContainer}>
           {/* Action Buttons */}
           <View style={styles.actionsContainer}>

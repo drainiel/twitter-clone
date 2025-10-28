@@ -1,6 +1,7 @@
-import { colors, fontSize, fontWeight, spacing } from '@/constants/theme';
+import { colors, fontSize, fontWeight, spacing, markdownStyles } from '@/constants/theme';
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Platform } from 'react-native'; 
+import Markdown from 'react-native-markdown-display';
 
 /**
  * Props for the PostContent component.
@@ -12,23 +13,13 @@ interface PostContentProps {
 }
 
 /**
- * A component that displays the main text content of a post.
- * Renders the post text with consistent styling, font size,
- * weight, color, and line height.
- *
+ * A component that displays the main text content of a post using Markdown.
+ * Renders the post text with consistent styling.
+ * 
  * @param props - The component props
- * @returns A styled text component displaying the post content
+ * @returns A styled Markdown component displaying the post content
  */
 export const PostContent: React.FC<PostContentProps> = ({ text }) => {
-  return <Text style={styles.content}>{text}</Text>;
+  // Use Markdown instead of Text
+  return <Markdown style={markdownStyles}>{text}</Markdown>;
 };
-
-const styles = StyleSheet.create({
-  content: {
-    fontSize: fontSize.md,
-    fontWeight: fontWeight.regular,
-    color: colors.textPrimary,
-    lineHeight: fontSize.md * 1.5,
-    marginBottom: spacing.md,
-  },
-});

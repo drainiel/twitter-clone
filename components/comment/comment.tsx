@@ -1,7 +1,8 @@
-import { colors, fontSize, fontWeight, spacing, separator } from '@/constants/theme';
+import { colors, fontSize, fontWeight, spacing, separator, markdownStyles, } from '@/constants/theme';
 import { Comment as CommentType } from '@/types';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Platform } from 'react-native'; 
+import Markdown from 'react-native-markdown-display';
 
 /**
  * Props for the Comment component.
@@ -13,12 +14,12 @@ interface CommentProps {
 }
 
 /**
- * A component that displays a single comment with author information and content.
+ * A component that displays a single comment with author information and Markdown content.
  * Shows the commenter's name, username (with @ prefix), timestamp, and comment text
  * in a structured layout with a bottom border separator.
  *
  * @param props - The component props
- * @returns A styled comment card with header and text content
+ * @returns A styled comment card with header and Markdown text content
  */
 export const Comment: React.FC<CommentProps> = ({ comment }) => {
   return (
@@ -28,7 +29,8 @@ export const Comment: React.FC<CommentProps> = ({ comment }) => {
         <Text style={styles.username}>@{comment.username}</Text>
         <Text style={styles.timestamp}>{comment.timestamp}</Text>
       </View>
-      <Text style={styles.text}>{comment.text}</Text>
+      {/* Use Markdown for the comment text */}
+      <Markdown style={markdownStyles}>{comment.text}</Markdown>
     </View>
   );
 };
@@ -61,12 +63,5 @@ const styles = StyleSheet.create({
     fontWeight: fontWeight.regular,
     color: colors.textSecondary,
     marginLeft: 'auto',
-  },
-  text: {
-    fontSize: fontSize.md,
-    fontWeight: fontWeight.regular,
-    color: colors.textPrimary,
-    lineHeight: fontSize.sm * 1.5,
-    marginBottom: spacing.md,
   },
 });

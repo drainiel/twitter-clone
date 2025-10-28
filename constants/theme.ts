@@ -1,6 +1,8 @@
 /**
  * theme.ts - centralized theme configuration
  */
+import { StyleSheet, Platform } from 'react-native';
+
 export const colors = {
   // Primary colors
   primary: '#208BFE',
@@ -94,6 +96,31 @@ export const separator = {
   small : 0.5,
 } as const;
 
+/**
+ * Shared styles for react-native-markdown-display.
+ * Covers body text, bold, italic, and strikethrough.
+ */
+export const markdownStyles = StyleSheet.create({
+  body: {
+    fontSize: fontSize.md,
+    fontWeight: fontWeight.regular,
+    color: colors.textPrimary,
+    lineHeight: fontSize.md * 1.5, // Base line height
+    marginBottom: spacing.md,
+  },
+  bold: { // Style for **bold**
+    fontWeight: 'bold', // Use named weight 'bold'
+  },
+  italic: { // Style for _italic_ or *italic*
+    fontStyle: 'italic',
+  },
+  strikethrough: { // Style for ~~strikethrough~~
+    textDecorationLine: 'line-through',
+    textDecorationStyle: 'solid',
+    color: colors.textSecondary,
+  },
+});
+
 // Type exports for TypeScript
 export type Colors = typeof colors;
 export type Spacing = typeof spacing;
@@ -102,3 +129,4 @@ export type FontSize = typeof fontSize;
 export type FontWeight = typeof fontWeight;
 export type Theme = typeof theme;
 export type IconSize = typeof iconSize;
+export type MarkdownStyles = typeof markdownStyles;
