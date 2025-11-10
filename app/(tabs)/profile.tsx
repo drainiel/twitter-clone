@@ -13,7 +13,7 @@ import {
   View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import useConfirmationAlert from '../hoooks/alert';
+import useConfirmationAlert from '../hooks/alert';
 import { mockPosts } from '@/mockData';
 
 // --- Placeholder User Data ---

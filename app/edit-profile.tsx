@@ -10,7 +10,7 @@ import {
   TouchableWithoutFeedback,
   View
 } from 'react-native';
-import useConfirmationAlert from './hoooks/alert';
+import useConfirmationAlert from './hooks/alert';
 
 const { showConfirmationAlert } = useConfirmationAlert();
 const handleBack = () => {
